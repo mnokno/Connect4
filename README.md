@@ -1,2 +1,2 @@
 # ConnectFour
-Unity project that contains both UI for playing the game and interface for starting a windows server used to host ai search engine (Marlin) that can be used to play again human opponents.  
+Unity project aiming to make my connect4 ai (Marlin) accessible on machine with low processing power (mobile phone, tablets, smart tv, etc) through hosting the ai on high performance server. This project contains UI for accessing the server and UI for starting/hosting the server.
