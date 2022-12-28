@@ -8,15 +8,19 @@ public class GameCircle : MonoBehaviour
     /// <summary>
     /// Reference to yellow color to use
     /// </summary>
-    [SerializeField] Color yellowColor;
+    [SerializeField] private Color yellowColor;
     /// <summary>
     /// Reference to red color to use
     /// </summary>
-    [SerializeField] Color redColor;
+    [SerializeField] private Color redColor;
     /// <summary>
     /// Reference to the image of this circle, used to update appearance
     /// </summary>
     private Image image;
+    /// <summary>
+    /// Reference to the GameManager
+    /// </summary>
+    private GameManager gameManager;
     /// <summary>
     /// X position of this circle on the game board
     /// </summary>
@@ -30,6 +34,8 @@ public class GameCircle : MonoBehaviour
     void Start()
     {
         image = GetComponentInParent<Image>();
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.RegisterGameCircle(this);
         image.alphaHitTestMinimumThreshold = 0.5f;
     }
 
@@ -38,7 +44,16 @@ public class GameCircle : MonoBehaviour
     /// </summary>
     public void Clicked()
     {
-        image.color = Random.value > 0.5f ? yellowColor : redColor;
+        gameManager.HandleClicked(this);
+    }
+
+    /// <summary>
+    /// Changes color of this circle
+    /// </summary>
+    /// <param name="color">Color to change it to</param>
+    public void ChangeColor(CircleColor circle)
+    {
+        image.color = circle == CircleColor.YELLOW ? yellowColor : redColor;
     }
 
     #region Getters and Setters
