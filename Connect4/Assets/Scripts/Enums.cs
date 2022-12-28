@@ -18,3 +18,9 @@ public enum GameState
     DRAW = 2,
     ON_GOING = 3
 }
+
+public enum CircleColor
+{
+    YELLOW = 0,
+    RED = 1
+}
