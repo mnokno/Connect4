@@ -43,5 +43,14 @@ public class GameManager : MonoBehaviour
     {
         int x = gameCircle.GetX();
         int y = gameCircle.GetY();
+        if (gameBoard.IsMoveLegal(x, y))
+        {
+            gameBoard.MakeMove(x, y);
+            gameCircle.ChangeColor((CircleColor)(int)gameBoard.GetGameBoard()[x, y]);
+            if (gameBoard.GetGameState() != GameState.ON_GOING)
+            {
+                Debug.Log(gameBoard.GetGameState().ToString());
+            }
+        }
     }
 }
