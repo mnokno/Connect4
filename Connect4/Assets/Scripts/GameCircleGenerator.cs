@@ -24,9 +24,11 @@ public class GameCircleGenerator : MonoBehaviour
                 float xPos = (-2.5f + x) * defaultBoxSize - (defaultBoxSize / 2f);
                 float yPos = (-2f + y) * defaultBoxSize - (defaultBoxSize / 2f);
                 GameObject newCircle = Instantiate(gameCirclePrefab);
-                newCircle.GetComponent<RectTransform>().SetParent(circlesContainer.transform);
-                newCircle.GetComponent<RectTransform>().localPosition = new Vector3(xPos, yPos, 0);
-                newCircle.GetComponent<RectTransform>().localScale = Vector3.one;
+                newCircle.GetComponentInParent<RectTransform>().SetParent(circlesContainer.transform);
+                newCircle.GetComponentInParent<RectTransform>().localPosition = new Vector3(xPos, yPos, 0);
+                newCircle.GetComponentInParent<RectTransform>().localScale = Vector3.one;
+                newCircle.GetComponentInParent<GameCircle>().SetGamePos(x, y);
+                newCircle.name = "GameCircle" + x.ToString() + ":" + y.ToString();
             }
         }
     }
