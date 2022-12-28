@@ -165,7 +165,7 @@ public class GameBoard
             int count = 0;
             int currentX = x;
             int currentY = 0;          
-            while (currentX >= 7 && currentY >= 6)
+            while (currentX < 7 && currentY < 6)
             {
                 if (gameBoard[currentX, currentY] == lineType)
                 {
@@ -191,7 +191,7 @@ public class GameBoard
             int count = 0;
             int currentX = 0;
             int currentY = y;
-            while (currentX >= 7 && currentY >= 6)
+            while (currentX < 7 && currentY < 6)
             {
                 if (gameBoard[currentX, currentY] == lineType)
                 {
@@ -218,8 +218,8 @@ public class GameBoard
             TileState lineType = TileState.EMPTY;
             int count = 0;
             int currentX = x;
-            int currentY = 6;
-            while (currentX >= 7 && currentY >= 6)
+            int currentY = 5;
+            while (currentX < 7 && currentY >= 0)
             {
                 if (gameBoard[currentX, currentY] == lineType)
                 {
@@ -239,13 +239,13 @@ public class GameBoard
                 currentY--;
             }
         }
-        for (int y = 0; y < 6; y++)
+        for (int y = 5; y <= 0; y--)
         {
             TileState lineType = TileState.EMPTY;
             int count = 0;
             int currentX = 0;
             int currentY = y;
-            while (currentX >= 7 && currentY >= 6)
+            while (currentX < 7 && currentY >= 0)
             {
                 if (gameBoard[currentX, currentY] == lineType)
                 {
