@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class GameCircleGenerator : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to gameCricles container
+    /// </summary>
     [SerializeField] private GameObject circlesContainer;
+    /// <summary>
+    /// Reference to game circle prefab
+    /// </summary>
     [SerializeField] private GameObject gameCirclePrefab;
 
     // Start is called before the first frame update
@@ -13,6 +19,9 @@ public class GameCircleGenerator : MonoBehaviour
         GenerateCircles();
     }
 
+    /// <summary>
+    /// Generates game circles to correct position
+    /// </summary>
     private void GenerateCircles()
     {
         int defaultBoxSize = 50;
@@ -31,11 +40,5 @@ public class GameCircleGenerator : MonoBehaviour
                 newCircle.name = "GameCircle" + x.ToString() + ":" + y.ToString();
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
