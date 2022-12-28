@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameCircle : MonoBehaviour
 {
+    [SerializeField] Color yellowColor;
+    [SerializeField] Color redColor;
     private Image image;
 
     // Start is called before the first frame update
@@ -14,9 +16,8 @@ public class GameCircle : MonoBehaviour
         image.alphaHitTestMinimumThreshold = 0.5f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Clicked()
     {
-        
+        image.color = Random.value > 0.5f ? yellowColor : redColor;
     }
 }
