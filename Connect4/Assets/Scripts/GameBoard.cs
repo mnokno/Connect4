@@ -1,3 +1,4 @@
+using UnityEngine;
 
 public class GameBoard
 {
@@ -77,6 +78,11 @@ public class GameBoard
     /// <returns>True if the move is legal, false otherwise</returns>
     public bool IsMoveLegal(int x, int y)
     {
+        if (gameState != GameState.ON_GOING)
+        {
+            return false;
+        }
+        
         if (gameBoard[x,y] != TileState.EMPTY)
         {   
             // if this tile is not empty than this move cant be legal
@@ -119,13 +125,14 @@ public class GameBoard
                     count = 1;
                 }
 
-                if (count == 4 || lineType != TileState.EMPTY)
+                if (count == 4 && lineType != TileState.EMPTY)
                 {
                     gameState = (GameState)(int)lineType;
                     return;
                 }
             }
         }
+        //Debug.Log("Vertical lines checked");
         // Checks horizontal lines
         for (int y = 0; y < 6; y++)
         {
@@ -143,13 +150,14 @@ public class GameBoard
                     count = 1;
                 }
 
-                if (count == 4 || lineType != TileState.EMPTY)
+                if (count == 4 && lineType != TileState.EMPTY)
                 {
                     gameState = (GameState)(int)lineType;
                     return;
                 }
             }
         }
+        //Debug.Log("Horizontal lines checked");
         // Checks diagonal line with positive gradient
         for (int x = 0; x < 7; x++)
         {
@@ -168,7 +176,7 @@ public class GameBoard
                     lineType = gameBoard[currentX, currentY];
                     count = 1;
                 }
-                if (count == 4 || lineType != TileState.EMPTY)
+                if (count == 4 && lineType != TileState.EMPTY)
                 {
                     gameState = (GameState)(int)lineType;
                     return;
@@ -194,7 +202,7 @@ public class GameBoard
                     lineType = gameBoard[currentX, currentY];
                     count = 1;
                 }
-                if (count == 4 || lineType != TileState.EMPTY)
+                if (count == 4 && lineType != TileState.EMPTY)
                 {
                     gameState = (GameState)(int)lineType;
                     return;
@@ -203,6 +211,7 @@ public class GameBoard
                 currentY++;
             }
         }
+        //Debug.Log("Diagonal lines with positive gradient checked");
         // Checks diagonal line with negative gradient
         for (int x = 0; x < 7; x++)
         {
@@ -221,7 +230,7 @@ public class GameBoard
                     lineType = gameBoard[currentX, currentY];
                     count = 1;
                 }
-                if (count == 4 || lineType != TileState.EMPTY)
+                if (count == 4 && lineType != TileState.EMPTY)
                 {
                     gameState = (GameState)(int)lineType;
                     return;
@@ -247,7 +256,7 @@ public class GameBoard
                     lineType = gameBoard[currentX, currentY];
                     count = 1;
                 }
-                if (count == 4 || lineType != TileState.EMPTY)
+                if (count == 4 && lineType != TileState.EMPTY)
                 {
                     gameState = (GameState)(int)lineType;
                     return;
@@ -256,6 +265,7 @@ public class GameBoard
                 currentY--;
             }
         }
+        //Debug.Log("Diagonal lines with negative gradient checked");
         // Check if its a draw
         if (moveCount == 42)
         {
