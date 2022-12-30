@@ -69,7 +69,7 @@ public class MarlinClient
     public int GetMove(int playedFile, int miliseconds)
     {
         // Creation of message that we will send to Server
-        byte[] messageSent = Encoding.ASCII.GetBytes("requestType:moveCalculation,opponentMove:" + playedFile.ToString() + ",timeLimit:" + miliseconds.ToString());
+        byte[] messageSent = Encoding.ASCII.GetBytes("requestType:moveCalculation,playedFile:" + playedFile.ToString() + ",timeLimit:" + miliseconds.ToString());
         int byteSent = sender.Send(messageSent);
 
         // Data buffer
@@ -79,6 +79,16 @@ public class MarlinClient
         // This method returns number of bytes received, that we'll use to convert them to string
         int byteRecv = sender.Receive(messageReceived);
         Debug.Log($"Message from Server -> {Encoding.ASCII.GetString(messageReceived, 0, byteRecv)}");
-        return 0;    
+
+        string[] parts = Encoding.ASCII.GetString(messageReceived, 0, byteRecv).Split(",");
+        foreach (string part in parts)
+        {
+            string[] a = part.Split(":");
+            if (a[0] == "move") 
+            {
+                return int.Parse(a[1]);
+            }
+        }
+        return -1;    
     }
 }
