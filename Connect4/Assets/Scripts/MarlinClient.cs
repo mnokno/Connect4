@@ -50,6 +50,7 @@ public class MarlinClient
         // Creation of message that we will send to Server
         byte[] messageSent = Encoding.ASCII.GetBytes("requestType:initialization,TTMemoryPool:" + TTMemoryPool.ToString());
         int byteSent = sender.Send(messageSent);
+        Debug.Log($"Message to Server -> {Encoding.ASCII.GetString(messageSent, 0, byteSent)}");
 
         // Data buffer
         byte[] messageReceived = new byte[1024];
@@ -71,7 +72,8 @@ public class MarlinClient
         // Creation of message that we will send to Server
         byte[] messageSent = Encoding.ASCII.GetBytes("requestType:moveCalculation,playedFile:" + playedFile.ToString() + ",timeLimit:" + miliseconds.ToString());
         int byteSent = sender.Send(messageSent);
-
+        Debug.Log($"Message to Server -> {Encoding.ASCII.GetString(messageSent, 0, byteSent)}");
+        
         // Data buffer
         byte[] messageReceived = new byte[1024];
 
