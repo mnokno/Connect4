@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     private MarlinClient marlinClient;
 
+    private int aiMove = -1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,12 @@ public class GameManager : MonoBehaviour
         if (aiStarts)
         {
             aiStarts = false;
-            MakeAIMove(-1);
+            RequestAIMove(-1);
+        }
+        if (aiMove != -1)
+        {
+            MakeAIMove(aiMove);
+            aiMove = -1;
         }
     }
 
@@ -56,30 +63,46 @@ public class GameManager : MonoBehaviour
     /// <param name="gameCircle">Clicked circle</param>
     public void HandleClicked(GameCircle gameCircle)
     {
-        int x = gameCircle.GetX();
-        int y = gameCircle.GetY();
-        if (gameBoard.IsMoveLegal(x, y))
+        // Prevent the user form making a move while the engine is thinking/calculating
+        if (!marlinClient.IsAwaitingReply())
         {
-            gameBoard.MakeMove(x, y);
-            gameCircle.ChangeColor((CircleColor)(int)gameBoard.GetGameBoard()[x, y]);
-            if (gameBoard.GetGameState() != GameState.ON_GOING)
+            int x = gameCircle.GetX();
+            int y = gameCircle.GetY();
+            if (gameBoard.IsMoveLegal(x, y))
             {
-                Debug.Log(gameBoard.GetGameState().ToString());
+                gameBoard.MakeMove(x, y);
+                gameCircle.ChangeColor((CircleColor)(int)gameBoard.GetGameBoard()[x, y]);
+                if (gameBoard.GetGameState() != GameState.ON_GOING)
+                {
+                    Debug.Log(gameBoard.GetGameState().ToString());
+                }
+                RequestAIMove(x);
             }
-            MakeAIMove(x);
         }
     }
 
-    void MakeAIMove(int file)
+    /// <summary>
+    /// Make asynchrony request to server for AI move
+    /// </summary>
+    /// <param name="file"></param>
+    private void RequestAIMove(int file)
     {
-        int move = marlinClient.GetMove(file, 1000);
+        marlinClient.GetMoveAsynch(file, 1000, (int result) => aiMove = result);
+    }
+
+    /// <summary>
+    /// Makes the AI move once the server has replayed
+    /// </summary>
+    /// <param name="move">Move to make</param>
+    private void MakeAIMove(int move)
+    {
         int x = move % 7;
         int y = (move - x) / 7;
 
         if (gameBoard.IsMoveLegal(x, y))
         {
             gameBoard.MakeMove(x, y);
-            gameCircles[x,y].ChangeColor((CircleColor)(int)gameBoard.GetGameBoard()[x, y]);
+            gameCircles[x, y].ChangeColor((CircleColor)(int)gameBoard.GetGameBoard()[x, y]);
             if (gameBoard.GetGameState() != GameState.ON_GOING)
             {
                 Debug.Log(gameBoard.GetGameState().ToString());
