@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using Unity.Netcode;
+using Unity.Netcode.Transports.UTP;
 using UnityEngine;
 
 public class NetworkCommandLine : MonoBehaviour
 {
     private NetworkManager netManager;
+    private static string val = "";
+    private static bool getIP = false;
 
     void Start()
     {
@@ -55,11 +58,15 @@ public class NetworkCommandLine : MonoBehaviour
     void OnGUI()
     {
         GUILayout.BeginArea(new Rect(10, 10, 200, 200));
-        if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
+        if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer && !getIP)
         {
             StartButtons();
         }
-        else
+        else if (getIP)
+        {
+            GetServerIP();
+        }
+        else 
         {
             StatusLabels();
         }
@@ -70,7 +77,7 @@ public class NetworkCommandLine : MonoBehaviour
     static void StartButtons()
     {
         if (GUILayout.Button("Host (Windows Only)")) NetworkManager.Singleton.StartHost();
-        if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
+        if (GUILayout.Button("Client")) NetworkCommandLine.getIP = true;
         if (GUILayout.Button("Server (Windows Only)")) NetworkManager.Singleton.StartServer();
     }
 
@@ -79,8 +86,14 @@ public class NetworkCommandLine : MonoBehaviour
         var mode = NetworkManager.Singleton.IsHost ?
             "Host" : NetworkManager.Singleton.IsServer ? "Server" : "Client";
 
-        GUILayout.Label("Transport: " +
-            NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
+        GUILayout.Label("Transport: " + NetworkManager.Singleton.NetworkConfig.NetworkTransport.GetType().Name);
         GUILayout.Label("Mode: " + mode);
+    }
+    
+    static void GetServerIP()
+    {
+        NetworkCommandLine.val = GUILayout.TextField(NetworkCommandLine.val);
+        NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(val, 7777);
+        if (GUILayout.Button("Connect")) NetworkManager.Singleton.StartClient();
     }
 }
