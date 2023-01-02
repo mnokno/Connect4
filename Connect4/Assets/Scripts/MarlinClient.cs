@@ -152,7 +152,7 @@ public class MarlinClient
     /// <param name="miliseconds">How much time the server will have to calculate best move</param>
     /// <param name="callback">Callback function called when we receive result from the server</param>
     /// <param name="marlinClient">Reference to marlin client that will be used to make the call</param>
-    public static void GetMoveAsynchTask(int playedFile, int miliseconds, Action<int> callback, in MarlinClient marlinClient)
+    private static void GetMoveAsynchTask(int playedFile, int miliseconds, Action<int> callback, in MarlinClient marlinClient)
     {
         // Prevent desynchronization on client side (this side)
         if (marlinClient.awaitingReply)
@@ -193,5 +193,14 @@ public class MarlinClient
         marlinClient.awaitingReply = false;
         // Tells the invoker that we revived result through callback function they provided
         callback.Invoke(-1);
+    }
+
+    /// <summary>
+    /// Getter for awaitingReply
+    /// </summary>
+    /// <returns>awaitingReply</returns>
+    public bool IsAwaitingReply()
+    {
+        return awaitingReply;
     }
 }
