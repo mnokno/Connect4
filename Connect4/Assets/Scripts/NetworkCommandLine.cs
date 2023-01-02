@@ -54,7 +54,7 @@ public class NetworkCommandLine : MonoBehaviour
 
     void OnGUI()
     {
-        GUILayout.BeginArea(new Rect(10, 10, 300, 300));
+        GUILayout.BeginArea(new Rect(10, 10, 200, 200));
         if (!NetworkManager.Singleton.IsClient && !NetworkManager.Singleton.IsServer)
         {
             StartButtons();
@@ -69,9 +69,9 @@ public class NetworkCommandLine : MonoBehaviour
 
     static void StartButtons()
     {
-        if (GUILayout.Button("Host")) NetworkManager.Singleton.StartHost();
+        if (GUILayout.Button("Host (Windows Only)")) NetworkManager.Singleton.StartHost();
         if (GUILayout.Button("Client")) NetworkManager.Singleton.StartClient();
-        if (GUILayout.Button("Server")) NetworkManager.Singleton.StartServer();
+        if (GUILayout.Button("Server (Windows Only)")) NetworkManager.Singleton.StartServer();
     }
 
     static void StatusLabels()
