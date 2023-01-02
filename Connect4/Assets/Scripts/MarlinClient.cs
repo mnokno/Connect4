@@ -18,6 +18,14 @@ public class MarlinClient
     private bool awaitingReply;
 
     /// <summary>
+    /// Constructor for MarlinClient, automatically start MarlinServer.exe
+    /// </summary>
+    public MarlinClient()
+    {
+        System.Diagnostics.Process.Start(Application.streamingAssetsPath + "\\MarlinServer.exe");
+    }
+    
+    /// <summary>
     /// Establishes connection to Marlin server
     /// </summary>
     public void Connect()
