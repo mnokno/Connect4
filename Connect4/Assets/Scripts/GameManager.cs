@@ -17,20 +17,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     [SerializeField] bool aiStarts = false;
 
-    private MarlinClient marlinClient;
-
-    private int aiMove = -1;
-
     // Start is called before the first frame update
     void Start()
     {
         gameCircles = new GameCircle[7, 6];
         gameBoard = new GameBoard();
-        marlinClient = new MarlinClient();
-        marlinClient.Connect();
-        marlinClient.InitGame(5000);
-
-
     }
     
     // Update is called once per frame
@@ -39,12 +30,7 @@ public class GameManager : MonoBehaviour
         if (aiStarts)
         {
             aiStarts = false;
-            RequestAIMove(-1);
-        }
-        if (aiMove != -1)
-        {
-            MakeAIMove(aiMove);
-            aiMove = -1;
+            //RequestAIMove(-1);
         }
     }
 
@@ -58,55 +44,43 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Handles user input
+    /// Make the given move and returns exit code
     /// </summary>
-    /// <param name="gameCircle">Clicked circle</param>
-    public void HandleClicked(GameCircle gameCircle)
+    /// <param name="x">X position of the move</param>
+    /// <param name="y">Y position of the move</param>
+    /// <returns>Returns 0 if the move was successfully made, -1 if the give move was illegal</returns>
+    public int MakeMove(int x, int y)
     {
-        // Prevent the user form making a move while the engine is thinking/calculating
-        if (!marlinClient.IsAwaitingReply())
+        if (IsMoveLegal(x, y))
         {
-            int x = gameCircle.GetX();
-            int y = gameCircle.GetY();
-            if (gameBoard.IsMoveLegal(x, y))
-            {
-                gameBoard.MakeMove(x, y);
-                gameCircle.ChangeColor((CircleColor)(int)gameBoard.GetGameBoard()[x, y]);
-                if (gameBoard.GetGameState() != GameState.ON_GOING)
-                {
-                    Debug.Log(gameBoard.GetGameState().ToString());
-                }
-                RequestAIMove(x);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Make asynchrony request to server for AI move
-    /// </summary>
-    /// <param name="file"></param>
-    private void RequestAIMove(int file)
-    {
-        marlinClient.GetMoveAsynch(file, 1000, (int result) => aiMove = result);
-    }
-
-    /// <summary>
-    /// Makes the AI move once the server has replayed
-    /// </summary>
-    /// <param name="move">Move to make</param>
-    private void MakeAIMove(int move)
-    {
-        int x = move % 7;
-        int y = (move - x) / 7;
-
-        if (gameBoard.IsMoveLegal(x, y))
-        {
+            // Make the move on the board
             gameBoard.MakeMove(x, y);
+            // Updates UI
             gameCircles[x, y].ChangeColor((CircleColor)(int)gameBoard.GetGameBoard()[x, y]);
+            // Logs who won if the game has ended
             if (gameBoard.GetGameState() != GameState.ON_GOING)
             {
                 Debug.Log(gameBoard.GetGameState().ToString());
             }
+            // Return exit code, move was successfully made
+            return 0;
         }
+        else
+        {
+            // Returns exit code, the given move was invalid
+            return -1;
+        }
+    }
+
+    
+    /// <summary>
+    /// Checks if the given move is legal
+    /// </summary>
+    /// <param name="x">X position of the move to validate</param>
+    /// <param name="y">Y position of the move to validate</param>
+    /// <returns>True if the move is legal, false otherwise</returns>
+    public bool IsMoveLegal(int x, int y)
+    {
+        return gameBoard.IsMoveLegal(x, y);
     }
 }

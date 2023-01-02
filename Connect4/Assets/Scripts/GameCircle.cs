@@ -22,6 +22,10 @@ public class GameCircle : MonoBehaviour
     /// </summary>
     private GameManager gameManager;
     /// <summary>
+    /// Reference to the InputManager
+    /// </summary>
+    private InputManager inputManager;
+    /// <summary>
     /// X position of this circle on the game board
     /// </summary>
     private int x;
@@ -35,6 +39,7 @@ public class GameCircle : MonoBehaviour
     {
         image = GetComponentInParent<Image>();
         gameManager = FindObjectOfType<GameManager>();
+        inputManager = FindObjectOfType<InputManager>();
         gameManager.RegisterGameCircle(this);
         image.alphaHitTestMinimumThreshold = 0.5f;
     }
@@ -44,7 +49,7 @@ public class GameCircle : MonoBehaviour
     /// </summary>
     public void Clicked()
     {
-        gameManager.HandleClicked(this);
+        inputManager.HandleClicked(this);
     }
 
     /// <summary>

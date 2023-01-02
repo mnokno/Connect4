@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEngine;
 
 public class NetworkGate : NetworkBehaviour
 {
@@ -6,16 +7,47 @@ public class NetworkGate : NetworkBehaviour
     /// Stores reference to MarlinClient instance, can only be crated on windows machine
     /// </summary>
     private MarlinClient marlinClient;
+    /// <summary>
+    /// Stores reference to GameManager
+    /// </summary>
+    private GameManager gameManager;
+    /// <summary>
+    /// Controlled by the server, if true the client is waiting for a reply from the engine
+    /// </summary>
+    private NetworkVariable<bool> isAvalable = new NetworkVariable<bool>();
+    /// <summary>
+    /// Stores engine calculated move, set to -1 if no move is available
+    /// </summary>
+    private int aiMove = -1;
 
     /// <summary>
-    /// On network spawn initializes marlin client if its the sever side
+    /// Update is called once per frame
     /// </summary>
+    private void Update()
+    {
+        if (IsSpawned && IsServer)
+        {
+            if (aiMove != -1)
+            {
+                MakeAIMoveClientRpc(aiMove);
+                aiMove = -1;
+            }
+            isAvalable.Value = !marlinClient.IsAwaitingReply();
+        }
+    }
+
     public override void OnNetworkSpawn()
     {
         if (IsServer)
         {
             marlinClient = new MarlinClient();
-            marlinClient.InitGame(10000);
+            marlinClient.Connect();
+            marlinClient.InitGame(5000);
+        }
+        if (IsClient)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+            FindObjectOfType<InputManager>().SetNetworkGate(this);
         }
     }
 
@@ -23,11 +55,11 @@ public class NetworkGate : NetworkBehaviour
     /// Calculates engine move on the server side and sends it to the client through MakeAIMoveClientRpc
     /// Call with user move:-1 to tell the server to calculate the first move
     /// </summary>
-    /// <param name="userMove">Move made by the user on the client side</param>
+    /// <param name="userPlayedFile">File on which the user played</param>
     [ServerRpc]
-    public void RequestAIMoveServerRpc(int userMove)
+    public void RequestAIMoveServerRpc(int userPlayedFile)
     {
-
+        marlinClient.GetMoveAsynch(userPlayedFile, 1000, (int result) => aiMove = result);
     }
 
     /// <summary>
@@ -37,6 +69,17 @@ public class NetworkGate : NetworkBehaviour
     [ClientRpc]
     public void MakeAIMoveClientRpc(int aiMove)
     {
+        int x = aiMove % 7;
+        int y = (aiMove - x) / 7;
+        gameManager.MakeMove(x, y);
+    }
 
+    /// <summary>
+    /// Getter for isAvalable, isAvalable is server controlled
+    /// </summary>
+    /// <returns>isAvalable</returns>
+    public bool IsAvalable()
+    {
+        return isAvalable.Value;
     }
 }
