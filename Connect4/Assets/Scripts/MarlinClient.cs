@@ -48,7 +48,7 @@ public class MarlinClient
     public void InitGame(int TTMemoryPool)
     {
         // Creation of message that we will send to Server
-        byte[] messageSent = Encoding.ASCII.GetBytes("requestType:initialization,TTMemoryPool:" + TTMemoryPool.ToString());
+        byte[] messageSent = Encoding.ASCII.GetBytes("requestType:initialization,TTMemoryPool:" + TTMemoryPool.ToString() + ",a:void");
         int byteSent = sender.Send(messageSent);
         Debug.Log($"Message to Server -> {Encoding.ASCII.GetString(messageSent, 0, byteSent)}");
 
