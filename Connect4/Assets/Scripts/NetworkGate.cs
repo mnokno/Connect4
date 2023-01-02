@@ -29,7 +29,18 @@ public class NetworkGate : NetworkBehaviour
         {
             if (aiMove != -1)
             {
-                MakeAIMoveClientRpc(aiMove);
+                // Converts index to x, y coordinates
+                int x = aiMove % 7;
+                int y = (aiMove - x) / 7;
+                
+                // Plays the move server side
+                if (!IsHost)
+                {
+                    gameManager.MakeMove(x, y);
+                }
+                // Plays the move client side
+                MakeAIMoveClientRpc(x, y);
+       
                 aiMove = -1;
             }
             isAvalable.Value = !marlinClient.IsAwaitingReply();
@@ -46,32 +57,36 @@ public class NetworkGate : NetworkBehaviour
         }
         if (IsClient)
         {
-            gameManager = FindObjectOfType<GameManager>();
             FindObjectOfType<InputManager>().SetNetworkGate(this);
         }
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     /// <summary>
     /// Calculates engine move on the server side and sends it to the client through MakeAIMoveClientRpc
     /// Call with user move:-1 to tell the server to calculate the first move
     /// </summary>
-    /// <param name="userPlayedFile">File on which the user played</param>
+    /// <param name="x">X position of where the user played</param>
+    /// <param name="y">Y position of where the user played</param>
     [ServerRpc]
-    public void RequestAIMoveServerRpc(int userPlayedFile)
+    public void RequestAIMoveServerRpc(int x, int y)
     {
-        marlinClient.GetMoveAsynch(userPlayedFile, 1000, (int result) => aiMove = result);
+        if (!IsHost)
+        {
+            gameManager.MakeMove(x, y);
+        }
+        marlinClient.GetMoveAsynch(x, 1000, (int result) => aiMove = result);
     }
 
     /// <summary>
     /// Makes the move on the client side, used to send data back to the client
     /// </summary>
-    /// <param name="aiMove">Move made by the engine</param>
+    /// <param name="aiX">X position of where the engine played</param>
+    /// <param name="aiY">Y position of where the engine played</param>
     [ClientRpc]
-    public void MakeAIMoveClientRpc(int aiMove)
+    public void MakeAIMoveClientRpc(int aiX, int aiY)
     {
-        int x = aiMove % 7;
-        int y = (aiMove - x) / 7;
-        gameManager.MakeMove(x, y);
+        gameManager.MakeMove(aiX, aiY);
     }
 
     /// <summary>

@@ -42,7 +42,7 @@ public class InputManager : MonoBehaviour
                 gameManager.MakeMove(x, y);
                 if (engineVsHuman)
                 {
-                    networkGate.RequestAIMoveServerRpc(x);
+                    networkGate.RequestAIMoveServerRpc(x, y);
                 }
             }
         }
