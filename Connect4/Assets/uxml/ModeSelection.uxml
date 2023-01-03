@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/uss/Basic.uss?fileID=7433441132597879392&amp;guid=40978cc33237e7441aef93550849005a&amp;type=3#Basic" />
+    <ui:VisualElement style="flex-grow: 1; flex-direction: column; align-items: center; justify-content: center;">
+        <ui:VisualElement name="Container" style="align-items: center; justify-content: flex-start; flex-basis: auto; flex-shrink: 1; padding-left: 0; padding-right: 0; flex-direction: column; padding-bottom: 20%; padding-top: 0;">
+            <ui:Button text="Client" display-tooltip-when-elided="true" name="ClientBtn" class="button" />
+            <ui:Button text="Host WinOlny" display-tooltip-when-elided="true" name="HostBtn" class="button" />
+            <ui:Button text="Server WinOnly" display-tooltip-when-elided="true" name="ServerBtn" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
