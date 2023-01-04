@@ -31,3 +31,26 @@
     background-color: rgba(26, 210, 228, 0.5);
     padding-left: 5%;
 }
+
+.label {
+}
+
+.unity-text-field__input {
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-left-width: 5px;
+    border-right-width: 5px;
+    border-top-width: 5px;
+    border-bottom-width: 5px;
+    border-left-color: rgba(0, 0, 0, 255);
+    border-right-color: rgba(0, 0, 0, 255);
+    border-top-color: rgba(0, 0, 0, 255);
+    border-bottom-color: rgba(0, 0, 0, 255);
+    -unity-text-align: middle-center;
+}
+
+.unity-base-field__input {
+    background-color: rgba(207, 166, 99, 255);
+}
