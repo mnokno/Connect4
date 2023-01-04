@@ -40,7 +40,7 @@ public class UI_ServerWaiting : MonoBehaviour
         if (NetworkManager.Singleton.IsServer && NetworkManager.Singleton.ConnectedClients.Count == 1)
         {
             uiManager.gameUI.SetActive(true);
-            this.gameObject.SetActive(false);
+            uiManager.serverWaitingPage.rootVisualElement.style.display = DisplayStyle.None;
         }
     }
 
