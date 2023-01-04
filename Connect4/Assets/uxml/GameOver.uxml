@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/uss/Basic.uss?fileID=7433441132597879392&amp;guid=40978cc33237e7441aef93550849005a&amp;type=3#Basic" />
+    <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center;">
+        <ui:VisualElement name="Container" class="gbstrip">
+            <ui:Label text="DRAW" display-tooltip-when-elided="true" name="Draw" style="background-color: rgb(154, 139, 139); font-size: 30px; border-top-width: 5px; border-bottom-width: 5px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-bottom: 20px; -unity-text-align: middle-center; width: 100%; border-left-width: 5px; border-right-width: 5px;" />
+            <ui:Label text="WICTORY" display-tooltip-when-elided="true" name="Wictory" style="background-color: rgb(75, 197, 51); font-size: 30px; border-top-width: 5px; border-bottom-width: 5px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-bottom: 20px; -unity-text-align: middle-center; width: 100%; border-left-width: 5px; border-right-width: 5px; height: 54px;" />
+            <ui:Label text="DEFEATE" display-tooltip-when-elided="true" name="Defeate" style="background-color: rgb(197, 62, 77); font-size: 30px; border-top-width: 5px; border-bottom-width: 5px; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0); margin-bottom: 20px; -unity-text-align: middle-center; width: 100%; border-left-width: 5px; border-right-width: 5px;" />
+            <ui:Button text="New Game" display-tooltip-when-elided="true" name="Quit" class="button" />
+            <ui:Button text="Quit" display-tooltip-when-elided="true" name="PlayAgain" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
