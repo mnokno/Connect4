@@ -4,6 +4,7 @@
         <ui:VisualElement name="Container" class="gbstrip">
             <ui:TextField picking-mode="Ignore" value="127.0.0.1" text="127.0.0.1" is-delayed="true" max-length="9" name="Input" style="font-size: 30px; -unity-font-style: bold; min-width: initial; width: 60%; -unity-text-align: upper-left;" />
             <ui:Button text="Connect" display-tooltip-when-elided="true" name="ServerBtn" class="button" />
+            <ui:Button text="Back" display-tooltip-when-elided="true" name="BackBtn" class="button" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

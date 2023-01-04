@@ -4,6 +4,7 @@
         <ui:VisualElement name="Container" class="gbstrip">
             <ui:Button text="Show IP" display-tooltip-when-elided="true" name="ShowIP" class="button" style="width: 50%;" />
             <ui:Label text="*********" display-tooltip-when-elided="true" name="Label" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 50%;" />
+            <ui:Button text="Back" display-tooltip-when-elided="true" name="BackBtn" class="button" style="width: auto;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

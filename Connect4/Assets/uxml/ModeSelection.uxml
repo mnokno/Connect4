@@ -5,6 +5,7 @@
             <ui:Button text="Client" display-tooltip-when-elided="true" name="ClientBtn" class="button" />
             <ui:Button text="Host WinOnly" display-tooltip-when-elided="true" name="HostBtn" class="button" />
             <ui:Button text="Server WinOnly" display-tooltip-when-elided="true" name="ServerBtn" class="button" />
+            <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitBtn" class="button" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

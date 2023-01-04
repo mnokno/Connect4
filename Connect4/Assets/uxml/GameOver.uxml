@@ -5,8 +5,8 @@
             <ui:Label text="DRAW" display-tooltip-when-elided="true" name="Draw" class="gameResultLabel" style="background-color: rgb(154, 139, 139);" />
             <ui:Label text="VICTORY" display-tooltip-when-elided="true" name="Victory" class="gameResultLabel" style="background-color: rgb(75, 197, 51);" />
             <ui:Label text="DEFEAT" name="Defeat" class="gameResultLabel" style="background-color: rgb(197, 62, 30);" />
-            <ui:Button text="New Game" display-tooltip-when-elided="true" name="Quit" class="button" />
-            <ui:Button text="Quit" display-tooltip-when-elided="true" name="PlayAgain" class="button" />
+            <ui:Button text="New Game" display-tooltip-when-elided="true" name="PlayAgainBtn" class="button" />
+            <ui:Button text="Home" display-tooltip-when-elided="true" name="HomeBtn" class="button" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
