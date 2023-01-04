@@ -747,7 +747,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150811130}
   - component: {fileID: 1150811129}
-  - component: {fileID: 1150811131}
+  - component: {fileID: 1150811132}
   m_Layer: 5
   m_Name: UIDocument-ServerWaiting
   m_TagString: Untagged
@@ -786,7 +786,7 @@ Transform:
   m_Father: {fileID: 1275155521}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1150811131
+--- !u!114 &1150811132
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -795,7 +795,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1150811128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e35b47ded131db4882e9a1064346a50, type: 3}
+  m_Script: {fileID: 11500000, guid: ff53b15148d64d9498cd74c6c4dad6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1275155520
@@ -1075,7 +1075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1666939264
 MonoBehaviour:
   m_ObjectHideFlags: 0

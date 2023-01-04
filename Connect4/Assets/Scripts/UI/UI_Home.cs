@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Unity.Netcode;
 
 public class UI_Home : MonoBehaviour
 {
@@ -22,10 +21,12 @@ public class UI_Home : MonoBehaviour
         Button clientBtn = root.Q<Button>("ClientBtn");
         Button hostBtn = root.Q<Button>("HostBtn");
         Button serverBtn = root.Q<Button>("ServerBtn");
+        Button quitBtn = root.Q<Button>("QuitBtn");
 
         clientBtn.clicked += () => ClientBtnCliced();
         hostBtn.clicked += () => HostBtnCliced();
         serverBtn.clicked += () => ServerBtnCliced();
+        quitBtn.clicked += () => QuitBtnCliced();
     }
 
     /// <summary>
@@ -43,6 +44,7 @@ public class UI_Home : MonoBehaviour
     private void HostBtnCliced()
     {
         uiManager.gameUI.SetActive(true);
+        NetworkManager.Singleton.StartHost();
         this.gameObject.SetActive(false);
     }
 
@@ -52,6 +54,15 @@ public class UI_Home : MonoBehaviour
     private void ServerBtnCliced()
     {
         uiManager.serverWaitingPage.gameObject.SetActive(true);
+        NetworkManager.Singleton.StartServer();
         this.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Called when the quit button is clicked
+    /// </summary>
+    private void QuitBtnCliced()
+    {
+        Application.Quit();
     }
 }
