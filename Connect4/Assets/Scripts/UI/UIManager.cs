@@ -1,20 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject gameUI;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] public GameObject gameUI;
+    [SerializeField] public UIDocument homePage;
+    [SerializeField] public UIDocument clientConnectPage;
+    [SerializeField] public UIDocument serverWaitingPage;
+    [SerializeField] public UIDocument gameOverPage;
 }
