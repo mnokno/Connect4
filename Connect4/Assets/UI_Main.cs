@@ -7,8 +7,8 @@ public class UI_Main : MonoBehaviour
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
 
-        Button button = root.Q<Button>("ClientBtn");
-        
-        button.clicked += () => Debug.Log("ClientBtn clicked");
+        Button button1 = root.Q<Button>("ClientBtn");
+
+        button1.clicked += () => Debug.Log("ClientBtn clicked");
     }
 }
