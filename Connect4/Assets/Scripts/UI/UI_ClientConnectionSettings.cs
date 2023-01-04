@@ -4,67 +4,69 @@ using Unity.Netcode;
 using System;
 using Unity.Netcode.Transports.UTP;
 
-public class UI_ClientConnectionSettings : MonoBehaviour
+namespace C4UI
 {
-    /// <summary>
-    /// Reference to UIManager 
-    /// </summary>
-    private UIManager uiManager;
-
-    /// <summary>
-    /// Start is called before the first frame update
-    /// </summary>
-    void Start()
+    public class UI_ClientConnectionSettings : MonoBehaviour
     {
-        uiManager = FindObjectOfType<UIManager>();
+        /// <summary>
+        /// Reference to UIManager 
+        /// </summary>
+        private UIManager uiManager;
 
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
-
-        Button connectBtn = root.Q<Button>("ConnectBtn");
-        Button backBtn = root.Q<Button>("BackBtn");
-
-        connectBtn.clicked += () => ConnectBtnClicked();
-        backBtn.clicked += () => BackBtnCliced();
-    }
-    
-    /// <summary>
-    /// Update is called once per frame
-    /// </summary>
-    private void Update()
-    {
-        if (NetworkManager.Singleton.IsClient && NetworkManager.Singleton.IsConnectedClient)
+        /// <summary>
+        /// Start is called before the first frame update
+        /// </summary>
+        void Start()
         {
-            uiManager.gameUI.SetActive(true);
-            uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.None;
+            uiManager = FindObjectOfType<UIManager>();
+
+            VisualElement root = GetComponent<UIDocument>().rootVisualElement;
+
+            Button connectBtn = root.Q<Button>("ConnectBtn");
+            Button backBtn = root.Q<Button>("BackBtn");
+
+            connectBtn.clicked += () => ConnectBtnClicked();
+            backBtn.clicked += () => BackBtnCliced();
         }
-    }
-    
-    /// <summary>
-    /// Called when the connect button is clicked
-    /// </summary>
-    private void ConnectBtnClicked()
-    {
-        try
+
+        /// <summary>
+        /// Update is called once per frame
+        /// </summary>
+        private void Update()
         {
-            NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
-                GetComponent<UIDocument>().rootVisualElement.Q<TextField>("Input").value, 7777);
-            NetworkManager.Singleton.StartClient();
+            if (NetworkManager.Singleton.IsClient && NetworkManager.Singleton.IsConnectedClient)
+            {
+                uiManager.gameUI.SetActive(true);
+                uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.None;
+            }
         }
-        catch (Exception e)
+
+        /// <summary>
+        /// Called when the connect button is clicked
+        /// </summary>
+        private void ConnectBtnClicked()
+        {
+            try
+            {
+                NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
+                    GetComponent<UIDocument>().rootVisualElement.Q<TextField>("Input").value, 7777);
+                NetworkManager.Singleton.StartClient();
+            }
+            catch (Exception e)
+            {
+                NetworkManager.Singleton.Shutdown();
+                Debug.LogError(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Called when the back button is clicked
+        /// </summary>
+        private void BackBtnCliced()
         {
             NetworkManager.Singleton.Shutdown();
-            Debug.LogError(e.Message);
+            uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.None;
+            uiManager.homePage.rootVisualElement.style.display = DisplayStyle.Flex;
         }
     }
-    
-    /// <summary>
-    /// Called when the back button is clicked
-    /// </summary>
-    private void BackBtnCliced()
-    {
-        NetworkManager.Singleton.Shutdown();
-        uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.None;
-        uiManager.homePage.rootVisualElement.style.display = DisplayStyle.Flex;
-    }
 }
-
