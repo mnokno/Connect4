@@ -12,12 +12,22 @@
     border-bottom-left-radius: 15px;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    font-size: 30px;
+    font-size: 40px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
     -unity-font-style: bold;
-    transition-duration: 0.6s;
+    transition-duration: 0.3s;
 }
 
 .button:hover {
     scale: 1.1 1.1;
+}
+
+.gbstrip {
+    flex-grow: 1;
+    align-items: center;
+    width: 30%;
+    padding-right: 5%;
+    padding-top: 10%;
+    background-color: rgba(26, 210, 228, 0.5);
+    padding-left: 5%;
 }
