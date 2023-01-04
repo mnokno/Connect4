@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Netcode;
 using System.Net;
-using System.Net.Sockets;
 using System;
 
 public class UI_ServerWaiting : MonoBehaviour
@@ -38,7 +37,7 @@ public class UI_ServerWaiting : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (NetworkManager.Singleton.ConnectedClients.Count == 1)
+        if (NetworkManager.Singleton.IsServer && NetworkManager.Singleton.ConnectedClients.Count == 1)
         {
             uiManager.gameUI.SetActive(true);
             this.gameObject.SetActive(false);
@@ -107,6 +106,8 @@ public class UI_ServerWaiting : MonoBehaviour
     /// </summary>
     private void BackBtnCliced()
     {
-        Debug.Log(NetworkManager.Singleton.ConnectedClients.Count);
+        NetworkManager.Singleton.Shutdown();
+        uiManager.serverWaitingPage.rootVisualElement.style.display = DisplayStyle.None;
+        uiManager.homePage.rootVisualElement.style.display = DisplayStyle.Flex;
     }
 }

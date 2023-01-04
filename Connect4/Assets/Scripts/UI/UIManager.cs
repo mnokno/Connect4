@@ -10,4 +10,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] public UIDocument clientConnectPage;
     [SerializeField] public UIDocument serverWaitingPage;
     [SerializeField] public UIDocument gameOverPage;
+
+    /// <summary>
+    /// Start is called before the first frame update
+    /// </summary>
+    private void Start()
+    {
+        homePage.rootVisualElement.style.display = DisplayStyle.Flex;
+        clientConnectPage.rootVisualElement.style.display = DisplayStyle.None;
+        serverWaitingPage.rootVisualElement.style.display = DisplayStyle.None;
+        gameOverPage.rootVisualElement.style.display = DisplayStyle.None;
+    }
 }

@@ -34,8 +34,8 @@ public class UI_Home : MonoBehaviour
     /// </summary>
     private void ClientBtnCliced()
     {
-        uiManager.clientConnectPage.gameObject.SetActive(true);
-        this.gameObject.SetActive(false);
+        uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
+        uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.Flex;
     }
 
     /// <summary>
@@ -43,9 +43,9 @@ public class UI_Home : MonoBehaviour
     /// </summary>
     private void HostBtnCliced()
     {
-        uiManager.gameUI.SetActive(true);
-        NetworkManager.Singleton.StartHost();
+        uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
         this.gameObject.SetActive(false);
+        NetworkManager.Singleton.StartHost();
     }
 
     /// <summary>
@@ -53,9 +53,9 @@ public class UI_Home : MonoBehaviour
     /// </summary>
     private void ServerBtnCliced()
     {
-        uiManager.serverWaitingPage.gameObject.SetActive(true);
+        uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
+        uiManager.serverWaitingPage.rootVisualElement.style.display = DisplayStyle.Flex;
         NetworkManager.Singleton.StartServer();
-        this.gameObject.SetActive(false);
     }
 
     /// <summary>
