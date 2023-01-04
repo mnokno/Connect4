@@ -24,3 +24,10 @@ public enum CircleColor
     YELLOW = 0,
     RED = 1
 }
+
+public enum GameResult
+{
+    WIN = 0,
+    LOSS = 1,
+    DRAW = 2
+}
