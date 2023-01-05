@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using C4UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -61,6 +63,24 @@ public class GameManager : MonoBehaviour
             if (gameBoard.GetGameState() != GameState.ON_GOING)
             {
                 Debug.Log(gameBoard.GetGameState().ToString());
+                UIManager uIManager = FindObjectOfType<UIManager>();
+                uIManager.gameUIEventSystem.SetActive(false);
+                uIManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.Flex;
+                if (gameBoard.GetGameState() == GameState.DRAW)
+                {
+                    FindObjectOfType<UI_GameOver>().ShowGameResult(GameResult.DRAW);
+                }
+                else
+                {
+                    if (aiStarts)
+                    {
+                        FindObjectOfType<UI_GameOver>().ShowGameResult(gameBoard.GetGameState() == GameState.YELLOW_WON ? GameResult.LOSS : GameResult.WIN);
+                    }
+                    else
+                    {
+                        FindObjectOfType<UI_GameOver>().ShowGameResult(gameBoard.GetGameState() == GameState.YELLOW_WON ? GameResult.WIN : GameResult.LOSS);
+                    }
+                }
             }
             // Return exit code, move was successfully made
             return 0;

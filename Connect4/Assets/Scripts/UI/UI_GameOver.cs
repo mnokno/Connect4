@@ -10,10 +10,6 @@ namespace C4UI
         /// Reference to UIManager 
         /// </summary>
         private UIManager uiManager;
-        /// <summary>
-        /// Set to true if IP is displayed
-        /// </summary>
-        private bool isIPShown = false;
 
         /// <summary>
         /// Start is called before the first frame update
@@ -49,6 +45,7 @@ namespace C4UI
         private void HomeBtnClicked()
         {
             //TODO reset game UI
+            uiManager.gameUIEventSystem.SetActive(true);
             uiManager.gameUI.SetActive(false);
             NetworkManager.Singleton.Shutdown();
             uiManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.None;

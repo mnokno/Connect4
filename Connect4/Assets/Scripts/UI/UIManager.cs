@@ -8,6 +8,7 @@ namespace C4UI
     public class UIManager : MonoBehaviour
     {
         [SerializeField] public GameObject gameUI;
+        [SerializeField] public GameObject gameUIEventSystem;
         [SerializeField] public UIDocument homePage;
         [SerializeField] public UIDocument clientConnectPage;
         [SerializeField] public UIDocument serverWaitingPage;

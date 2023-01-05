@@ -487,6 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameUI: {fileID: 1513664421}
+  gameUIEventSystem: {fileID: 1142788554}
   homePage: {fileID: 699266509}
   clientConnectPage: {fileID: 1562816181}
   serverWaitingPage: {fileID: 1150811129}
@@ -516,6 +517,7 @@ GameObject:
   m_Component:
   - component: {fileID: 975162377}
   - component: {fileID: 975162376}
+  - component: {fileID: 975162378}
   m_Layer: 5
   m_Name: UIDocument-GameOver
   m_TagString: Untagged
@@ -554,6 +556,18 @@ Transform:
   m_Father: {fileID: 1275155521}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &975162378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975162375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee06d8817fa59284ab45ef32bec17eca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &987674678
 GameObject:
   m_ObjectHideFlags: 0
