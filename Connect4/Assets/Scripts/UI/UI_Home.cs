@@ -46,7 +46,7 @@ namespace C4UI
         private void HostBtnCliced()
         {
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
-            this.gameObject.SetActive(false);
+            uiManager.gameUI.SetActive(true);
             NetworkManager.Singleton.StartHost();
         }
 
@@ -69,3 +69,4 @@ namespace C4UI
         }
     }
 }
+
