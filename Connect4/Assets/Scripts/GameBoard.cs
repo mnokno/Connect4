@@ -314,4 +314,36 @@ public class GameBoard
 
     #endregion
 
+    #region Structures
+
+    /// <summary>
+    /// Structure used to store a wining line
+    /// </summary>
+    public struct WinigLine
+    {
+        /// <summary>
+        /// Array storing the coordinates of tiles in the wining line
+        /// </summary>
+        private int[,] coordinates;
+
+        /// <summary>
+        /// Constructor for the WinigLine
+        /// </summary>
+        /// <param name="coordinates">Array storing the coordinates of tiles in the wining line</param>
+        public WinigLine(int[,] coordinates)
+        {
+            this.coordinates = coordinates;
+        }
+
+        /// <summary>
+        /// Getter for the coordinates
+        /// </summary>
+        /// <returns>coordinates</returns>
+        public int[,] GetCordinates()
+        {
+            return coordinates;
+        }
+    }
+    
+    #endregion
 }
