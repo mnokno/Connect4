@@ -79,6 +79,20 @@ public class GameCircle : MonoBehaviour
     }
 
     /// <summary>
+    /// Resets the circle to initial state
+    /// </summary>
+    public void ResetCircle()
+    {
+        // Destroys star if this circle had one
+        foreach (GameObject go in this.transform)
+        {
+            Destroy(go);
+        }
+        // Restores default color
+        image.color = Color.black;
+    }
+
+    /// <summary>
     /// Grows GameObject contain start legacy UI image component from startScale to
     /// endScale in given time interpolating linearly
     /// </summary>
