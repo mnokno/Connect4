@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameCircle : MonoBehaviour
 {
     /// <summary>
-    /// Reference to game object contain start legacy UI image component
+    /// Reference to GameObject contain start legacy UI image component
     /// </summary>
     public static GameObject starImage;
     /// <summary>
@@ -38,8 +38,10 @@ public class GameCircle : MonoBehaviour
     /// </summary>
     private int y;
 
-    // Start is called before the first frame update
-    void Start()
+    /// <summary>
+    /// Start is called before the first frame update
+    /// </summary>    
+    private void Start()
     {
         image = GetComponentInParent<Image>();
         gameManager = FindObjectOfType<GameManager>();
@@ -76,6 +78,14 @@ public class GameCircle : MonoBehaviour
         StartCoroutine(GrowStart(star, 0f, 1f, 0.5f));
     }
 
+    /// <summary>
+    /// Grows GameObject contain start legacy UI image component from startScale to
+    /// endScale in given time interpolating linearly
+    /// </summary>
+    /// <param name="star">GameObject to grow</param>
+    /// <param name="startScale">Initial scale</param>
+    /// <param name="endScale">Finale scale</param>
+    /// <param name="time">Time over which the game object will grow</param>
     private IEnumerator GrowStart(GameObject star, float startScale, float endScale, float time)
     {
         Vector3 endScaleVector = new Vector3(endScale, endScale, endScale);
@@ -84,7 +94,7 @@ public class GameCircle : MonoBehaviour
         while (timePassed < time)
         {
             timePassed += Time.deltaTime;
-            star.transform.localScale = Vector3.Lerp(startScaleVector, endScaleVector, timePassed);
+            star.transform.localScale = Vector3.Lerp(startScaleVector, endScaleVector, timePassed / time);
             yield return null;
         }
         star.transform.localScale = endScaleVector;
