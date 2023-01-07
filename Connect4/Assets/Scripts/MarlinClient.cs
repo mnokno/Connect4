@@ -95,6 +95,48 @@ public class MarlinClient
     }
 
     /// <summary>
+    /// Sends request to the Marlin server to start a new game
+    /// </summary>
+    /// <param name="TTMemoryPool">How much ram in MB the server will dedicate for the game, 
+    ///                             set to -1 to keep transposition table from the previous game</param>
+    public void NewGame(int TTMemoryPool = -1)
+    {
+        // Prevent desynchronization on client side (this side)
+        if (awaitingReply)
+        {
+            throw new Exception("Marline client is wait reply from a different call!");
+        }
+
+        // Reserves right to make request
+        awaitingReply = true;
+
+        // Creation of message that we will send to Server
+        byte[] messageSent;
+        if (TTMemoryPool > 0)
+        {
+            messageSent = Encoding.ASCII.GetBytes("requestType:newGame,TTMemoryPool:" + TTMemoryPool.ToString());
+        }
+        else
+        {
+            messageSent = Encoding.ASCII.GetBytes("requestType:newGame");
+        }
+         
+        int byteSent = sender.Send(messageSent);
+        Debug.Log($"Message to Server -> {Encoding.ASCII.GetString(messageSent, 0, byteSent)}");
+
+        // Data buffer
+        byte[] messageReceived = new byte[1024];
+
+        // We receive the message using the method Receive().
+        // This method returns number of bytes received, that we'll use to convert them to string
+        int byteRecv = sender.Receive(messageReceived);
+        Debug.Log($"Message from Server -> {Encoding.ASCII.GetString(messageReceived, 0, byteRecv)}");
+
+        // Releases request privilege
+        awaitingReply = false;
+    }
+
+    /// <summary>
     /// Send played move to Marlin server and wait for reply
     /// </summary>
     /// <param name="playedFile">File on which the player played</param>
