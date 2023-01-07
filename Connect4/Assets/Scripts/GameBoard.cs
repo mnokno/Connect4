@@ -324,13 +324,13 @@ public class GameBoard
         /// <summary>
         /// Array storing the coordinates of tiles in the wining line
         /// </summary>
-        private int[,] coordinates;
+        private Vector2[] coordinates;
 
         /// <summary>
         /// Constructor for the WinigLine
         /// </summary>
         /// <param name="coordinates">Array storing the coordinates of tiles in the wining line</param>
-        public WinigLine(int[,] coordinates)
+        public WinigLine(Vector2[] coordinates)
         {
             this.coordinates = coordinates;
         }
@@ -339,7 +339,7 @@ public class GameBoard
         /// Getter for the coordinates
         /// </summary>
         /// <returns>coordinates</returns>
-        public int[,] GetCordinates()
+        public Vector2[] GetCordinates()
         {
             return coordinates;
         }
