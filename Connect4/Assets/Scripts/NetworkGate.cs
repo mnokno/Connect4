@@ -96,7 +96,7 @@ public class NetworkGate : NetworkBehaviour
     /// Called by the client to start a new game
     /// </summary>
     [ServerRpc]
-    public void NewGame()
+    public void NewGameServerRpc()
     {
         if (!IsHost)
         {
