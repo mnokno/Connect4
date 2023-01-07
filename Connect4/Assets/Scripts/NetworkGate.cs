@@ -92,6 +92,19 @@ public class NetworkGate : NetworkBehaviour
         marlinClient.GetMoveAsynch(x, 1000, (int result) => aiMove = result);
     }
 
+    /// <summary>
+    /// Called by the client to start a new game
+    /// </summary>
+    [ServerRpc]
+    public void NewGame()
+    {
+        if (!IsHost)
+        {
+            gameManager.ResetGame();
+        }
+        marlinClient.NewGame();
+    }
+
     #endregion
 
     #region ClientRpc
