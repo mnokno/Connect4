@@ -37,6 +37,7 @@ namespace C4UI
         private void PlayAgainBtnClicked()
         {
             FindObjectOfType<GameManager>().ResetGame();
+            FindObjectOfType<GameManager>().NewGame();
             uiManager.gameUIEventSystem.SetActive(true);
             uiManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.None;
         }
@@ -46,7 +47,7 @@ namespace C4UI
         /// </summary>
         private void HomeBtnClicked()
         {
-            //TODO reset game UI
+            FindObjectOfType<GameManager>().ResetGame();
             uiManager.gameUIEventSystem.SetActive(true);
             uiManager.gameUI.SetActive(false);
             NetworkManager.Singleton.Shutdown();
