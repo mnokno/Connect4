@@ -15,25 +15,31 @@ public class GameManager : MonoBehaviour
     /// </summary>
     private GameBoard gameBoard;
     /// <summary>
-    /// If true, the AI will make the first move
+    /// Flag used to decide who start the game
     /// </summary>
-    [SerializeField] bool aiStarts = false;
+    [SerializeField] private bool aiStarts = false;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// Start is called before the first frame update
+    /// </summary>
     void Start()
     {
         gameCircles = new GameCircle[7, 6];
         gameBoard = new GameBoard();
     }
-    
-    // Update is called once per frame
-    void Update()
+
+    /// <summary>
+    /// Resets the game to initial state
+    /// </summary>
+    public void ResetGame()
     {
-        if (aiStarts)
+        // Resets visuals
+        foreach (GameCircle gameCircle in gameCircles)
         {
-            aiStarts = false;
-            //RequestAIMove(-1);
+            gameCircle.ResetCircle();
         }
+        // Resets logical state
+        gameBoard = new GameBoard();
     }
 
     /// <summary>
@@ -76,7 +82,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
     /// <summary>
     /// Checks if the given move is legal
     /// </summary>
