@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using Unity.Netcode;
 using System;
 using Unity.Netcode.Transports.UTP;
+using C4Audio;
 
 namespace C4UI
 {
@@ -46,6 +47,7 @@ namespace C4UI
         /// </summary>
         private void ConnectBtnClicked()
         {
+            AudioManager.instance.Play("Click");
             try
             {
                 NetworkManager.Singleton.GetComponent<UnityTransport>().SetConnectionData(
@@ -64,6 +66,7 @@ namespace C4UI
         /// </summary>
         private void BackBtnCliced()
         {
+            AudioManager.instance.Play("Click");
             NetworkManager.Singleton.Shutdown();
             uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.None;
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.Flex;

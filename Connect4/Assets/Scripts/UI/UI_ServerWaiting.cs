@@ -3,6 +3,7 @@ using UnityEngine.UIElements;
 using Unity.Netcode;
 using System.Net;
 using System;
+using C4Audio;
 
 namespace C4UI
 {
@@ -51,6 +52,7 @@ namespace C4UI
         /// </summary>
         private void ToggleIPCliced()
         {
+            AudioManager.instance.Play("Click");
             if (isIPShown)
             {
                 HideIP();
@@ -109,6 +111,7 @@ namespace C4UI
         /// </summary>
         private void BackBtnCliced()
         {
+            AudioManager.instance.Play("Click");
             NetworkManager.Singleton.Shutdown();
             uiManager.serverWaitingPage.rootVisualElement.style.display = DisplayStyle.None;
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.Flex;

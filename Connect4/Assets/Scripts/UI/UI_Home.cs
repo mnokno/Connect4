@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Netcode;
+using C4Audio;
 
 namespace C4UI
 {
@@ -36,6 +37,7 @@ namespace C4UI
         /// </summary>
         private void ClientBtnCliced()
         {
+            AudioManager.instance.Play("Click");
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
             uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.Flex;
         }
@@ -45,6 +47,7 @@ namespace C4UI
         /// </summary>
         private void HostBtnCliced()
         {
+            AudioManager.instance.Play("Click");
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
             uiManager.gameUI.SetActive(true);
             NetworkManager.Singleton.StartHost();
@@ -55,6 +58,7 @@ namespace C4UI
         /// </summary>
         private void ServerBtnCliced()
         {
+            AudioManager.instance.Play("Click");
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
             uiManager.serverWaitingPage.rootVisualElement.style.display = DisplayStyle.Flex;
             NetworkManager.Singleton.StartServer();
@@ -65,6 +69,7 @@ namespace C4UI
         /// </summary>
         private void QuitBtnCliced()
         {
+            AudioManager.instance.Play("Click");
             Application.Quit();
         }
     }

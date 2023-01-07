@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Netcode;
+using C4Audio;
 
 namespace C4UI
 {
@@ -36,6 +37,7 @@ namespace C4UI
         /// </summary>
         private void PlayAgainBtnClicked()
         {
+            AudioManager.instance.Play("Click");
             FindObjectOfType<GameManager>().ResetGame();
             FindObjectOfType<GameManager>().NewGame();
             uiManager.gameUIEventSystem.SetActive(true);
@@ -47,6 +49,7 @@ namespace C4UI
         /// </summary>
         private void HomeBtnClicked()
         {
+            AudioManager.instance.Play("Click");
             FindObjectOfType<GameManager>().ResetGame();
             uiManager.gameUIEventSystem.SetActive(true);
             uiManager.gameUI.SetActive(false);
