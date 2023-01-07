@@ -274,8 +274,11 @@ public class GameBoard
             return;
         }
     }
-
-    private List<WinigLine> GetWiningLines()
+    
+    /// <summary>
+    /// Returns a list containing all wining lines in the position
+    /// <returns></returns>
+    public List<WinigLine> GetWiningLines()
     {
         List<WinigLine> winingLines = new List<WinigLine>();
         List<Vector2> currentLine = new List<Vector2>();
