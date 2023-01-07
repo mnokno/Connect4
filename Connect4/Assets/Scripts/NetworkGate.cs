@@ -66,6 +66,17 @@ public class NetworkGate : NetworkBehaviour
     }
 
     /// <summary>
+    /// Getter for isAvalable, isAvalable is server controlled
+    /// </summary>
+    /// <returns>isAvalable</returns>
+    public bool IsAvalable()
+    {
+        return isAvalable.Value;
+    }
+
+    #region ServerRpc
+
+    /// <summary>
     /// Calculates engine move on the server side and sends it to the client through MakeAIMoveClientRpc
     /// Call with user move:-1 to tell the server to calculate the first move
     /// </summary>
@@ -81,6 +92,10 @@ public class NetworkGate : NetworkBehaviour
         marlinClient.GetMoveAsynch(x, 1000, (int result) => aiMove = result);
     }
 
+    #endregion
+
+    #region ClientRpc
+
     /// <summary>
     /// Makes the move on the client side, used to send data back to the client
     /// </summary>
@@ -92,12 +107,5 @@ public class NetworkGate : NetworkBehaviour
         gameManager.MakeMove(aiX, aiY);
     }
 
-    /// <summary>
-    /// Getter for isAvalable, isAvalable is server controlled
-    /// </summary>
-    /// <returns>isAvalable</returns>
-    public bool IsAvalable()
-    {
-        return isAvalable.Value;
-    }
+    #endregion
 }
