@@ -36,7 +36,9 @@ namespace C4UI
         /// </summary>
         private void PlayAgainBtnClicked()
         {
-            
+            FindObjectOfType<GameManager>().ResetGame();
+            uiManager.gameUIEventSystem.SetActive(true);
+            uiManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.None;
         }
 
         /// <summary>

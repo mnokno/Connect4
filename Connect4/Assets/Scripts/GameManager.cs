@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
         }
         // Resets logical state
         gameBoard = new GameBoard();
+        // Tells the server to reset the game
+        FindObjectOfType<NetworkGate>().NewGameServerRpc();
     }
 
     /// <summary>
