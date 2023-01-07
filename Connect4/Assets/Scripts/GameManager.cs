@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
             // Logs who won if the game has ended
             if (gameBoard.GetGameState() != GameState.ON_GOING)
             {
+                ShowWiningLines();
                 Debug.Log(gameBoard.GetGameState().ToString());
                 UIManager uIManager = FindObjectOfType<UIManager>();
                 uIManager.gameUIEventSystem.SetActive(false);
@@ -102,5 +103,19 @@ public class GameManager : MonoBehaviour
     public bool IsMoveLegal(int x, int y)
     {
         return gameBoard.IsMoveLegal(x, y);
+    }
+
+    /// <summary>
+    /// Displays wining lines on the board
+    /// </summary>
+    private void ShowWiningLines()
+    {
+        foreach (GameBoard.WinigLine winigLine in gameBoard.GetWiningLines())
+        {
+            foreach (Vector2 pos in winigLine.GetCordinates()) 
+            {
+                gameCircles[(int)pos.x, (int)pos.y].ShowIsWining();
+            }
+        }
     }
 }

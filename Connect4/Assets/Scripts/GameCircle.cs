@@ -60,6 +60,14 @@ public class GameCircle : MonoBehaviour
     {
         image.color = circle == CircleColor.YELLOW ? yellowColor : redColor;
     }
+    
+    /// <summary>
+    /// Changes appearance of this game circle to show that its part of a winning line
+    /// </summary>
+    public void ShowIsWining()
+    {
+        image.color = Color.green;
+    }
 
     #region Getters and Setters
     
