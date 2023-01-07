@@ -6,6 +6,10 @@ using UnityEngine.UI;
 public class GameCircle : MonoBehaviour
 {
     /// <summary>
+    /// Reference to game object contain start legacy UI image component
+    /// </summary>
+    public static GameObject starImage;
+    /// <summary>
     /// Reference to yellow color to use
     /// </summary>
     [SerializeField] private Color yellowColor;
@@ -66,7 +70,24 @@ public class GameCircle : MonoBehaviour
     /// </summary>
     public void ShowIsWining()
     {
-        image.color = Color.green;
+        GameObject star = Instantiate(starImage);
+        star.GetComponent<RectTransform>().SetParent(this.transform);
+        star.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        StartCoroutine(GrowStart(star, 0f, 1f, 0.5f));
+    }
+
+    private IEnumerator GrowStart(GameObject star, float startScale, float endScale, float time)
+    {
+        Vector3 endScaleVector = new Vector3(endScale, endScale, endScale);
+        Vector3 startScaleVector = new Vector3(startScale, startScale, startScale);
+        float timePassed = 0;
+        while (timePassed < time)
+        {
+            timePassed += Time.deltaTime;
+            star.transform.localScale = Vector3.Lerp(startScaleVector, endScaleVector, timePassed);
+            yield return null;
+        }
+        star.transform.localScale = endScaleVector;
     }
 
     #region Getters and Setters

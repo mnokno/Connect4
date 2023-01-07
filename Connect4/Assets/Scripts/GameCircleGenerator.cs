@@ -12,6 +12,10 @@ public class GameCircleGenerator : MonoBehaviour
     /// Reference to game circle prefab
     /// </summary>
     [SerializeField] private GameObject gameCirclePrefab;
+    /// <summary>
+    /// Reference to game object contain start legacy UI image component
+    /// </summary>
+    [SerializeField] private GameObject starImage;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +29,7 @@ public class GameCircleGenerator : MonoBehaviour
     private void GenerateCircles()
     {
         int defaultBoxSize = 50;
+        GameCircle.starImage = starImage;
 
         for (int x = 0; x < 7; x++)
         {

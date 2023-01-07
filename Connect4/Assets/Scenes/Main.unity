@@ -979,6 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circlesContainer: {fileID: 1510584782}
   gameCirclePrefab: {fileID: 7049349447918972737, guid: 24f79a5acda7967478cc26263ab5a561, type: 3}
+  starImage: {fileID: 2310036260504767225, guid: 2431c987f94a9b24087796429347353b, type: 3}
 --- !u!1 &1513664421
 GameObject:
   m_ObjectHideFlags: 0
