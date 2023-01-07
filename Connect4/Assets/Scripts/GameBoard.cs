@@ -299,7 +299,7 @@ public class GameBoard
                 }
                 else
                 {
-                    if (count >= 4)
+                    if (count >= 4 && lineType != TileState.EMPTY)
                     {
                         winingLines.Add(new WinigLine(currentLine.ToArray()));
                     }
@@ -311,7 +311,7 @@ public class GameBoard
                 }
             }
             
-            if (count >= 4)
+            if (count >= 4 && lineType != TileState.EMPTY)
             {
                 winingLines.Add(new WinigLine(currentLine.ToArray()));
             }
@@ -332,7 +332,7 @@ public class GameBoard
                 }
                 else
                 {
-                    if (count >= 4)
+                    if (count >= 4 && lineType != TileState.EMPTY)
                     {
                         winingLines.Add(new WinigLine(currentLine.ToArray()));
                     }
@@ -342,7 +342,7 @@ public class GameBoard
                     count = 1;
                 }
             }
-            if (count >= 4)
+            if (count >= 4 && lineType != TileState.EMPTY)
             {
                 winingLines.Add(new WinigLine(currentLine.ToArray()));
             }
@@ -365,7 +365,7 @@ public class GameBoard
                 }
                 else
                 {
-                    if (count >= 4)
+                    if (count >= 4 && lineType != TileState.EMPTY)
                     {
                         winingLines.Add(new WinigLine(currentLine.ToArray()));
                     }
@@ -377,7 +377,7 @@ public class GameBoard
                 currentX++;
                 currentY++;
             }
-            if (count >= 4)
+            if (count >= 4 && lineType != TileState.EMPTY)
             {
                 winingLines.Add(new WinigLine(currentLine.ToArray()));
             }
@@ -398,7 +398,7 @@ public class GameBoard
                 }
                 else
                 {
-                    if (count >= 4)
+                    if (count >= 4 && lineType != TileState.EMPTY)
                     {
                         winingLines.Add(new WinigLine(currentLine.ToArray()));
                     }
@@ -410,7 +410,7 @@ public class GameBoard
                 currentX++;
                 currentY++;              
             }
-            if (count >= 4)
+            if (count >= 4 && lineType != TileState.EMPTY)
             {
                 winingLines.Add(new WinigLine(currentLine.ToArray()));
             }
@@ -433,7 +433,7 @@ public class GameBoard
                 }
                 else
                 {
-                    if (count >= 4)
+                    if (count >= 4 && lineType != TileState.EMPTY)
                     {
                         winingLines.Add(new WinigLine(currentLine.ToArray()));
                     }
@@ -445,12 +445,11 @@ public class GameBoard
                 currentX++;
                 currentY--;
             }
-            if (count >= 4)
+            if (count >= 4 && lineType != TileState.EMPTY)
             {
                 winingLines.Add(new WinigLine(currentLine.ToArray()));
             }
             currentLine.Clear();
-            currentLine.Add(new Vector2(currentX, currentY));
         }
         for (int y = 5; y <= 0; y--)
         {
@@ -467,7 +466,7 @@ public class GameBoard
                 }
                 else
                 {
-                    if (count >= 4)
+                    if (count >= 4 && lineType != TileState.EMPTY)
                     {
                         winingLines.Add(new WinigLine(currentLine.ToArray()));
                     }
@@ -479,12 +478,11 @@ public class GameBoard
                 currentX++;
                 currentY--;
             }
-            if (count >= 4)
+            if (count >= 4 && lineType != TileState.EMPTY)
             {
                 winingLines.Add(new WinigLine(currentLine.ToArray()));
             }
             currentLine.Clear();
-            currentLine.Add(new Vector2(currentX, currentY));
         }
 
         return winingLines;
