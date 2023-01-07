@@ -47,6 +47,9 @@ public class NetworkGate : NetworkBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when a client joins the network
+    /// </summary>
     public override void OnNetworkSpawn()
     {
         if (IsServer)
