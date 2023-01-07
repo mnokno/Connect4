@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameBoard
@@ -272,6 +273,218 @@ public class GameBoard
             gameState = GameState.DRAW;
             return;
         }
+    }
+
+    private List<WinigLine> GetWiningLines()
+    {
+        List<WinigLine> winingLines = new List<WinigLine>();
+        List<Vector2> currentLine = new List<Vector2>();
+
+        // Checks vertical lines
+        for (int x = 0; x < 7; x++)
+        {
+            TileState lineType = TileState.EMPTY;
+            
+            int count = 0;
+
+            for (int y = 0; y < 6; y++)
+            {
+                if (gameBoard[x, y] == lineType)
+                {
+                    currentLine.Add(new Vector2(x, y));
+                    count++;
+                }
+                else
+                {
+                    if (count >= 4)
+                    {
+                        winingLines.Add(new WinigLine(currentLine.ToArray()));
+                    }
+                    currentLine.Clear();
+                    currentLine.Add(new Vector2(x, y));
+                    
+                    lineType = gameBoard[x, y];
+                    count = 1;
+                }
+            }
+            
+            if (count >= 4)
+            {
+                winingLines.Add(new WinigLine(currentLine.ToArray()));
+            }
+            currentLine.Clear();
+        }
+        //Debug.Log("Vertical lines checked");
+        // Checks horizontal lines
+        for (int y = 0; y < 6; y++)
+        {
+            TileState lineType = TileState.EMPTY;
+            int count = 0;
+            for (int x = 0; x < 7; x++)
+            {
+                if (gameBoard[x, y] == lineType)
+                {
+                    currentLine.Add(new Vector2(x, y));
+                    count++;
+                }
+                else
+                {
+                    if (count >= 4)
+                    {
+                        winingLines.Add(new WinigLine(currentLine.ToArray()));
+                    }
+                    currentLine.Clear();
+                    currentLine.Add(new Vector2(x, y));
+                    lineType = gameBoard[x, y];
+                    count = 1;
+                }
+            }
+            if (count >= 4)
+            {
+                winingLines.Add(new WinigLine(currentLine.ToArray()));
+            }
+            currentLine.Clear();
+        }
+        //Debug.Log("Horizontal lines checked");
+        // Checks diagonal line with positive gradient
+        for (int x = 0; x < 7; x++)
+        {
+            TileState lineType = TileState.EMPTY;
+            int count = 0;
+            int currentX = x;
+            int currentY = 0;
+            while (currentX < 7 && currentY < 6)
+            {
+                if (gameBoard[currentX, currentY] == lineType)
+                {
+                    currentLine.Add(new Vector2(currentX, currentY));
+                    count++;
+                }
+                else
+                {
+                    if (count >= 4)
+                    {
+                        winingLines.Add(new WinigLine(currentLine.ToArray()));
+                    }
+                    currentLine.Clear();
+                    currentLine.Add(new Vector2(currentX, currentY));
+                    lineType = gameBoard[currentX, currentY];
+                    count = 1;
+                }
+                currentX++;
+                currentY++;
+            }
+            if (count >= 4)
+            {
+                winingLines.Add(new WinigLine(currentLine.ToArray()));
+            }
+            currentLine.Clear();
+        }
+        for (int y = 0; y < 6; y++)
+        {
+            TileState lineType = TileState.EMPTY;
+            int count = 0;
+            int currentX = 0;
+            int currentY = y;
+            while (currentX < 7 && currentY < 6)
+            {
+                if (gameBoard[currentX, currentY] == lineType)
+                {
+                    currentLine.Add(new Vector2(currentX, currentY));
+                    count++;
+                }
+                else
+                {
+                    if (count >= 4)
+                    {
+                        winingLines.Add(new WinigLine(currentLine.ToArray()));
+                    }
+                    currentLine.Clear();
+                    currentLine.Add(new Vector2(currentX, currentY));
+                    lineType = gameBoard[currentX, currentY];
+                    count = 1;
+                }
+                currentX++;
+                currentY++;              
+            }
+            if (count >= 4)
+            {
+                winingLines.Add(new WinigLine(currentLine.ToArray()));
+            }
+            currentLine.Clear();
+        }
+        //Debug.Log("Diagonal lines with positive gradient checked");
+        // Checks diagonal line with negative gradient
+        for (int x = 0; x < 7; x++)
+        {
+            TileState lineType = TileState.EMPTY;
+            int count = 0;
+            int currentX = x;
+            int currentY = 5;
+            while (currentX < 7 && currentY >= 0)
+            {
+                if (gameBoard[currentX, currentY] == lineType)
+                {
+                    currentLine.Add(new Vector2(currentX, currentY));
+                    count++;
+                }
+                else
+                {
+                    if (count >= 4)
+                    {
+                        winingLines.Add(new WinigLine(currentLine.ToArray()));
+                    }
+                    currentLine.Clear();
+                    currentLine.Add(new Vector2(currentX, currentY));
+                    lineType = gameBoard[currentX, currentY];
+                    count = 1;
+                }
+                currentX++;
+                currentY--;
+            }
+            if (count >= 4)
+            {
+                winingLines.Add(new WinigLine(currentLine.ToArray()));
+            }
+            currentLine.Clear();
+            currentLine.Add(new Vector2(currentX, currentY));
+        }
+        for (int y = 5; y <= 0; y--)
+        {
+            TileState lineType = TileState.EMPTY;
+            int count = 0;
+            int currentX = 0;
+            int currentY = y;
+            while (currentX < 7 && currentY >= 0)
+            {
+                if (gameBoard[currentX, currentY] == lineType)
+                {
+                    currentLine.Add(new Vector2(currentX, currentY));
+                    count++;
+                }
+                else
+                {
+                    if (count >= 4)
+                    {
+                        winingLines.Add(new WinigLine(currentLine.ToArray()));
+                    }
+                    currentLine.Clear();
+                    currentLine.Add(new Vector2(currentX, currentY));
+                    lineType = gameBoard[currentX, currentY];
+                    count = 1;
+                }
+                currentX++;
+                currentY--;
+            }
+            if (count >= 4)
+            {
+                winingLines.Add(new WinigLine(currentLine.ToArray()));
+            }
+            currentLine.Clear();
+            currentLine.Add(new Vector2(currentX, currentY));
+        }
+
+        return winingLines;
     }
 
     #region Getters and Setters
