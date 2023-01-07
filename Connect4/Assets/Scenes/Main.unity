@@ -388,6 +388,30 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Win
+    clip: {fileID: 8300000, guid: 6ebab322bef5cd14eb2293f8060bf3d2, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Loss
+    clip: {fileID: 8300000, guid: 908b100418f39a74a9c602ab26b5c4f4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Draw
+    clip: {fileID: 8300000, guid: 32521bea89ae2904aa83fa219f8ea225, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: MovePlayed
+    clip: {fileID: 8300000, guid: 030029f8f39df8c4e9ce37fb8d66c348, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   dontDestroyOnLoad: 1
 --- !u!4 &635813461
 Transform:

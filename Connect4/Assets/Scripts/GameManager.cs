@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using C4UI;
 using UnityEngine.UIElements;
+using C4Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
     {
         if (IsMoveLegal(x, y))
         {
+            AudioManager.instance.Play("MovePlayed");
             // Make the move on the board
             gameBoard.MakeMove(x, y);
             // Updates UI
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour
                 ShowWiningLines();
                 Debug.Log(gameBoard.GetGameState().ToString());
                 StartCoroutine(ShowGameOverUIAfter(0.5f));
+                PlayGameOverSound();
             }
             // Return exit code, move was successfully made
             return 0;
@@ -138,6 +141,42 @@ public class GameManager : MonoBehaviour
             else
             {
                 FindObjectOfType<UI_GameOver>().ShowGameResult(gameBoard.GetGameState() == GameState.YELLOW_WON ? GameResult.WIN : GameResult.LOSS);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Plays sound after the game has ended
+    /// </summary>
+    private void PlayGameOverSound()
+    {
+        if (gameBoard.GetGameState() == GameState.DRAW)
+        {
+            AudioManager.instance.Play("Draw");
+        }
+        else
+        {
+            if (aiStarts)
+            {
+                if (gameBoard.GetGameState() == GameState.YELLOW_WON)
+                {
+                    AudioManager.instance.Play("Loss");
+                }
+                else
+                {
+                    AudioManager.instance.Play("Win");
+                }
+            }
+            else
+            {
+                if (gameBoard.GetGameState() == GameState.YELLOW_WON)
+                {
+                    AudioManager.instance.Play("Win");
+                }
+                else
+                {
+                    AudioManager.instance.Play("Loss");
+                }
             }
         }
     }
