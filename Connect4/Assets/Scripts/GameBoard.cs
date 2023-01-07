@@ -240,7 +240,7 @@ public class GameBoard
                 currentY--;
             }
         }
-        for (int y = 5; y <= 0; y--)
+        for (int y = 5; y >= 0; y--)
         {
             TileState lineType = TileState.EMPTY;
             int count = 0;
@@ -451,7 +451,7 @@ public class GameBoard
             }
             currentLine.Clear();
         }
-        for (int y = 5; y <= 0; y--)
+        for (int y = 5; y >= 0; y--)
         {
             TileState lineType = TileState.EMPTY;
             int count = 0;
