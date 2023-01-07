@@ -64,24 +64,7 @@ public class GameManager : MonoBehaviour
             {
                 ShowWiningLines();
                 Debug.Log(gameBoard.GetGameState().ToString());
-                UIManager uIManager = FindObjectOfType<UIManager>();
-                uIManager.gameUIEventSystem.SetActive(false);
-                uIManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.Flex;
-                if (gameBoard.GetGameState() == GameState.DRAW)
-                {
-                    FindObjectOfType<UI_GameOver>().ShowGameResult(GameResult.DRAW);
-                }
-                else
-                {
-                    if (aiStarts)
-                    {
-                        FindObjectOfType<UI_GameOver>().ShowGameResult(gameBoard.GetGameState() == GameState.YELLOW_WON ? GameResult.LOSS : GameResult.WIN);
-                    }
-                    else
-                    {
-                        FindObjectOfType<UI_GameOver>().ShowGameResult(gameBoard.GetGameState() == GameState.YELLOW_WON ? GameResult.WIN : GameResult.LOSS);
-                    }
-                }
+                StartCoroutine(ShowGameOverUIAfter(1f));
             }
             // Return exit code, move was successfully made
             return 0;
@@ -115,6 +98,33 @@ public class GameManager : MonoBehaviour
             foreach (Vector2 pos in winigLine.GetCordinates()) 
             {
                 gameCircles[(int)pos.x, (int)pos.y].ShowIsWining();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Show the game over UI after the given amount of time
+    /// </summary>
+    /// <param name="time">Time to wait before showing the UI</param>
+    private IEnumerator ShowGameOverUIAfter(float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
+        UIManager uIManager = FindObjectOfType<UIManager>();
+        uIManager.gameUIEventSystem.SetActive(false);
+        uIManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.Flex;
+        if (gameBoard.GetGameState() == GameState.DRAW)
+        {
+            FindObjectOfType<UI_GameOver>().ShowGameResult(GameResult.DRAW);
+        }
+        else
+        {
+            if (aiStarts)
+            {
+                FindObjectOfType<UI_GameOver>().ShowGameResult(gameBoard.GetGameState() == GameState.YELLOW_WON ? GameResult.LOSS : GameResult.WIN);
+            }
+            else
+            {
+                FindObjectOfType<UI_GameOver>().ShowGameResult(gameBoard.GetGameState() == GameState.YELLOW_WON ? GameResult.WIN : GameResult.LOSS);
             }
         }
     }
