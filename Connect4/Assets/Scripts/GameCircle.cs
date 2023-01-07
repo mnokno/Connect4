@@ -84,9 +84,9 @@ public class GameCircle : MonoBehaviour
     public void ResetCircle()
     {
         // Destroys star if this circle had one
-        foreach (GameObject go in this.transform)
+        foreach (Transform t in transform)
         {
-            Destroy(go);
+            Destroy(t.gameObject);
         }
         // Restores default color
         image.color = Color.black;
