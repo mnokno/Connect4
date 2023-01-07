@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
             {
                 ShowWiningLines();
                 Debug.Log(gameBoard.GetGameState().ToString());
-                StartCoroutine(ShowGameOverUIAfter(1f));
+                StartCoroutine(ShowGameOverUIAfter(0.5f));
             }
             // Return exit code, move was successfully made
             return 0;
