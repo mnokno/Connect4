@@ -102,7 +102,18 @@ public class NetworkGate : NetworkBehaviour
         {
             gameManager.ResetGame();
         }
+        FindObjectOfType<C4UI.UIManager>().gameOverPage.rootVisualElement.style.display = UnityEngine.UIElements.DisplayStyle.None;
         marlinClient.NewGame(TTMemoryPool:5000);
+    }
+
+    /// <summary>
+    /// Can be called by the client to shutdown the server
+    /// </summary>
+    [ServerRpc]
+    public void EndSesionServerRpc()
+    {
+        NetworkManager.Singleton.Shutdown();
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     #endregion

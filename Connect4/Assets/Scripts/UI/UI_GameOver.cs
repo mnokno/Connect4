@@ -50,6 +50,7 @@ namespace C4UI
         private void HomeBtnClicked()
         {
             AudioManager.instance.Play("Click");
+            FindObjectOfType<NetworkGate>().EndSesionServerRpc();
             FindObjectOfType<GameManager>().ResetGame();
             uiManager.gameUIEventSystem.SetActive(true);
             uiManager.gameUI.SetActive(false);
