@@ -102,7 +102,7 @@ public class NetworkGate : NetworkBehaviour
         {
             gameManager.ResetGame();
         }
-        marlinClient.NewGame();
+        marlinClient.NewGame(TTMemoryPool:5000);
     }
 
     #endregion
