@@ -141,8 +141,9 @@ public class MarlinClient
     /// </summary>
     /// <param name="playedFile">File on which the player played</param>
     /// <param name="miliseconds">How much time the server will have to calculate best move</param>
+    /// <param name="diffculty">Strength of the engine</param>
     /// <returns></returns>
-    public int GetMove(int playedFile, int miliseconds)
+    public int GetMove(int playedFile, int miliseconds, int diffculty)
     {
         // Prevent desynchronization on client side (this side)
         if (awaitingReply)
@@ -154,7 +155,7 @@ public class MarlinClient
         awaitingReply = true;
 
         // Creation of message that we will send to Server
-        byte[] messageSent = Encoding.ASCII.GetBytes("requestType:moveCalculation,playedFile:" + playedFile.ToString() + ",timeLimit:" + miliseconds.ToString());
+        byte[] messageSent = Encoding.ASCII.GetBytes("requestType:moveCalculation,playedFile:" + playedFile.ToString() + ",timeLimit:" + miliseconds.ToString() + ",maxDepth:" + diffculty);
         int byteSent = sender.Send(messageSent);
         Debug.Log($"Message to Server -> {Encoding.ASCII.GetString(messageSent, 0, byteSent)}");
         
@@ -189,10 +190,11 @@ public class MarlinClient
     /// <param name="playedFile">File on which the player played</param>
     /// <param name="miliseconds">How much time the server will have to calculate best move</param>
     /// <param name="callback">Callback function called when we receive result from the server</param>
+    /// <param name="diffculty">Strength of the engine</param>
     /// <returns></returns>
-    public void GetMoveAsynch(int playedFile, int miliseconds, Action<int> callback)
+    public void GetMoveAsynch(int playedFile, int miliseconds, Action<int> callback, int diffculty)
     {
-        new Thread(() => GetMoveAsynchTask(playedFile, miliseconds, callback, this)).Start();
+        new Thread(() => GetMoveAsynchTask(playedFile, miliseconds, callback, this, diffculty)).Start();
     }
 
     /// <summary>
@@ -202,7 +204,8 @@ public class MarlinClient
     /// <param name="miliseconds">How much time the server will have to calculate best move</param>
     /// <param name="callback">Callback function called when we receive result from the server</param>
     /// <param name="marlinClient">Reference to marlin client that will be used to make the call</param>
-    private static void GetMoveAsynchTask(int playedFile, int miliseconds, Action<int> callback, in MarlinClient marlinClient)
+    /// <param name="diffculty">Strength of the engine</param>
+    private static void GetMoveAsynchTask(int playedFile, int miliseconds, Action<int> callback, in MarlinClient marlinClient, int diffculty)
     {
         // Prevent desynchronization on client side (this side)
         if (marlinClient.awaitingReply)
@@ -214,7 +217,7 @@ public class MarlinClient
         marlinClient.awaitingReply = true;
 
         // Creation of message that we will send to Server
-        byte[] messageSent = Encoding.ASCII.GetBytes("requestType:moveCalculation,playedFile:" + playedFile.ToString() + ",timeLimit:" + miliseconds.ToString());
+        byte[] messageSent = Encoding.ASCII.GetBytes("requestType:moveCalculation,playedFile:" + playedFile.ToString() + ",timeLimit:" + miliseconds.ToString() + ",maxDepth:" + diffculty);
         int byteSent = marlinClient.sender.Send(messageSent);
         Debug.Log($"Message to Server -> {Encoding.ASCII.GetString(messageSent, 0, byteSent)}");
 

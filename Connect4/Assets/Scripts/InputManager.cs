@@ -17,6 +17,10 @@ public class InputManager : MonoBehaviour
     /// Flag used to deiced weather the opponent is another human on engine
     /// </summary>
     [SerializeField] private bool engineVsHuman = true;
+    /// <summary>
+    /// Difficulty level used when requesting moves
+    /// </summary>
+    public int diffcultyLevel = 50;
 
     /// <summary>
     /// Start is called before the first frame update
@@ -42,7 +46,7 @@ public class InputManager : MonoBehaviour
                 gameManager.MakeMove(x, y);
                 if (engineVsHuman)
                 {
-                    networkGate.RequestAIMoveServerRpc(x, y);
+                    networkGate.RequestAIMoveServerRpc(x, y, diffcultyLevel);
                 }
             }
         }

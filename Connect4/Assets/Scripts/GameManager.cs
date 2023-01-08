@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
     public void NewGame(){
         aiStarts = !aiStarts;
         isWaitForAIToStart = aiStarts;
-        FindObjectOfType<NetworkGate>().NewGameServerRpc(aiStarts);
+        FindObjectOfType<NetworkGate>().NewGameServerRpc(aiStarts, FindObjectOfType<InputManager>().diffcultyLevel);
     }
 
     /// <summary>

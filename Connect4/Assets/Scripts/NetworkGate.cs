@@ -82,31 +82,34 @@ public class NetworkGate : NetworkBehaviour
     /// </summary>
     /// <param name="x">X position of where the user played</param>
     /// <param name="y">Y position of where the user played</param>
+    /// <param name="difficultyLevel">difficultyLevel for this move</param>
     [ServerRpc]
-    public void RequestAIMoveServerRpc(int x, int y)
+    public void RequestAIMoveServerRpc(int x, int y, int difficulty)
     {
         if (!IsHost)
         {
             gameManager.MakeMove(x, y);
         }
-        marlinClient.GetMoveAsynch(x, 1000, (int result) => aiMove = result);
+        marlinClient.GetMoveAsynch(x, 1000, (int result) => aiMove = result, difficulty);
     }
 
     /// <summary>
     /// Calculates engine move on the server side and sends it to the client through MakeAIMoveClientRpc
     /// without human move, used to tell the AI to start the game
+    /// <param name="difficultyLevel">difficultyLevel for this move</param>
     /// </summary>
     [ServerRpc]
-    public void RequestAIMoveServerRpc()
+    public void RequestAIMoveServerRpc(int difficulty)
     {
-        marlinClient.GetMoveAsynch(-1, 1000, (int result) => aiMove = result);
+        marlinClient.GetMoveAsynch(-1, 1000, (int result) => aiMove = result, difficulty);
     }
 
     /// <summary>
     /// Called by the client to start a new game
+    /// <param name="difficultyLevel">difficultyLevel for this move</param>
     /// </summary>
     [ServerRpc]
-    public void NewGameServerRpc(bool aiStart)
+    public void NewGameServerRpc(bool aiStart, int difficulty)
     {
         if (!IsHost)
         {
@@ -117,7 +120,7 @@ public class NetworkGate : NetworkBehaviour
         marlinClient.NewGame(TTMemoryPool:5000);
         if (aiStart)
         {
-            marlinClient.GetMoveAsynch(-1, 1000, (int result) => aiMove = result);
+            marlinClient.GetMoveAsynch(-1, 1000, (int result) => aiMove = result, difficulty);
         }
     }
 

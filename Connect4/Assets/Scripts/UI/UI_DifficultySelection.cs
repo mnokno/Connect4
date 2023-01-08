@@ -94,6 +94,7 @@ namespace C4UI
         private void OnValueChanged(ChangeEvent<int> value)
         {
             AudioManager.instance.Play("Slide");
+            FindObjectOfType<InputManager>().diffcultyLevel = value.newValue;
             GetComponent<UIDocument>().rootVisualElement.Q<Label>("DiffLbl").text = "AI Level: " + value.newValue;
         }
 
