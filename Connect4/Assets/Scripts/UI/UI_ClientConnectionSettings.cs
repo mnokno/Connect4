@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Netcode;
 using System;
-using System.Collections;
 using Unity.Netcode.Transports.UTP;
 using C4Audio;
 
@@ -69,7 +68,7 @@ namespace C4UI
             }
             catch (Exception e)
             {
-                StartCoroutine(ShutdownWithDelay(.5f));
+                NetworkManager.Singleton.Shutdown();
                 Debug.LogError(e.Message);
             }
         }
@@ -92,16 +91,6 @@ namespace C4UI
         {
             AudioManager.instance.Play("Click");
             Application.Quit();
-        }
-
-        /// <summary>
-        /// Can be used to shutdown the sever with delay
-        /// </summary>
-        /// <param name="delay">Delay in seconds</param>
-        private IEnumerator ShutdownWithDelay(float delay)
-        {
-            yield return new WaitForSeconds(delay);
-            NetworkManager.Singleton.Shutdown();
         }
     }
 }
