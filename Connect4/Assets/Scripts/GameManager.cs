@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     /// Flag used to decide who start the game
     /// </summary>
     [SerializeField] private bool aiStarts = false;
+    /// <summary>
+    /// Prevents the player from starting the game when the AI is starting
+    /// </summary>
+    public bool isWaitForAIToStart = false;
 
     /// <summary>
     /// Start is called before the first frame update
@@ -49,6 +53,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void NewGame(){
         aiStarts = !aiStarts;
+        isWaitForAIToStart = aiStarts;
         FindObjectOfType<NetworkGate>().NewGameServerRpc(aiStarts);
     }
 
@@ -69,6 +74,7 @@ public class GameManager : MonoBehaviour
     /// <returns>Returns 0 if the move was successfully made, -1 if the give move was illegal</returns>
     public int MakeMove(int x, int y)
     {
+        isWaitForAIToStart = false;
         if (IsMoveLegal(x, y))
         {
             AudioManager.instance.Play("MovePlayed");

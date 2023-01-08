@@ -33,7 +33,7 @@ public class InputManager : MonoBehaviour
     public void HandleClicked(GameCircle gameCircle)
     {
         // Prevent the user form making a move while the engine is thinking/calculating
-        if (NetworkManager.Singleton.IsClient && networkGate.IsAvalable())
+        if (NetworkManager.Singleton.IsClient && networkGate.IsAvalable() && !gameManager.isWaitForAIToStart)
         {
             int x = gameCircle.GetX();
             int y = gameCircle.GetY();
