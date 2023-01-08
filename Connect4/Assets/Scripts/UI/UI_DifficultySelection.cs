@@ -93,6 +93,7 @@ namespace C4UI
         /// <param name="value">New slider value</param>
         private void OnValueChanged(ChangeEvent<int> value)
         {
+            AudioManager.instance.Play("Slide");
             GetComponent<UIDocument>().rootVisualElement.Q<Label>("DiffLbl").text = "AI Level: " + value.newValue;
         }
 
