@@ -61,7 +61,7 @@ namespace C4UI
             if (Application.platform != RuntimePlatform.WindowsPlayer && Application.platform != RuntimePlatform.WindowsEditor)
             {
                 uiManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.None;
-                uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.Flex;
+                uiManager.difficultySelectionPage.rootVisualElement.style.display = DisplayStyle.Flex;
             }
             else
             {

@@ -13,6 +13,7 @@ namespace C4UI
         [SerializeField] public UIDocument clientConnectPage;
         [SerializeField] public UIDocument serverWaitingPage;
         [SerializeField] public UIDocument gameOverPage;
+        [SerializeField] public UIDocument difficultySelectionPage;
 
         /// <summary>
         /// Start is called before the first frame update
@@ -23,12 +24,13 @@ namespace C4UI
             clientConnectPage.rootVisualElement.style.display = DisplayStyle.None;
             serverWaitingPage.rootVisualElement.style.display = DisplayStyle.None;
             gameOverPage.rootVisualElement.style.display = DisplayStyle.None;
+            difficultySelectionPage.rootVisualElement.style.display = DisplayStyle.None;
 
             // Host and Severer is only available on windows so we can automatically load client page
             if (Application.platform != RuntimePlatform.WindowsPlayer && Application.platform != RuntimePlatform.WindowsEditor)
             {
                 homePage.rootVisualElement.style.display = DisplayStyle.None;
-                clientConnectPage.rootVisualElement.style.display = DisplayStyle.Flex;
+                difficultySelectionPage.rootVisualElement.style.display = DisplayStyle.Flex;
             }
         }
     }

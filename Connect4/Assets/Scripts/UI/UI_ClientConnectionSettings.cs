@@ -29,17 +29,6 @@ namespace C4UI
 
             connectBtn.clicked += () => ConnectBtnClicked();
             backBtn.clicked += () => BackBtnCliced();
-            quitBtn.clicked += () => QuitBtnCliced();
-
-            // Quit is for non-windows platforms while back is for window platforms
-            if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
-            {
-                quitBtn.style.display = DisplayStyle.None;               
-            }
-            else
-            {
-                backBtn.style.display = DisplayStyle.None;
-            }
         }
 
         /// <summary>
@@ -81,16 +70,7 @@ namespace C4UI
             AudioManager.instance.Play("Click");
             NetworkManager.Singleton.Shutdown();
             uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.None;
-            uiManager.homePage.rootVisualElement.style.display = DisplayStyle.Flex;
-        }
-
-        /// <summary>
-        /// Called when the quit button is clicked
-        /// </summary>
-        private void QuitBtnCliced()
-        {
-            AudioManager.instance.Play("Click");
-            Application.Quit();
+            uiManager.difficultySelectionPage.rootVisualElement.style.display = DisplayStyle.Flex;
         }
     }
 }

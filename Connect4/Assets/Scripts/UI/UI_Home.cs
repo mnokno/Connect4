@@ -39,7 +39,7 @@ namespace C4UI
         {
             AudioManager.instance.Play("Click");
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
-            uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.Flex;
+            uiManager.difficultySelectionPage.rootVisualElement.style.display = DisplayStyle.Flex;
         }
 
         /// <summary>
