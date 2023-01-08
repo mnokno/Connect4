@@ -93,10 +93,20 @@ public class NetworkGate : NetworkBehaviour
     }
 
     /// <summary>
+    /// Calculates engine move on the server side and sends it to the client through MakeAIMoveClientRpc
+    /// without human move, used to tell the AI to start the game
+    /// </summary>
+    [ServerRpc]
+    public void RequestAIMoveServerRpc()
+    {
+        marlinClient.GetMoveAsynch(-1, 1000, (int result) => aiMove = result);
+    }
+
+    /// <summary>
     /// Called by the client to start a new game
     /// </summary>
     [ServerRpc]
-    public void NewGameServerRpc()
+    public void NewGameServerRpc(bool aiStart)
     {
         if (!IsHost)
         {
@@ -104,6 +114,10 @@ public class NetworkGate : NetworkBehaviour
         }
         FindObjectOfType<C4UI.UIManager>().gameOverPage.rootVisualElement.style.display = UnityEngine.UIElements.DisplayStyle.None;
         marlinClient.NewGame(TTMemoryPool:5000);
+        if (aiStart)
+        {
+            marlinClient.GetMoveAsynch(-1, 1000, (int result) => aiMove = result);
+        }
     }
 
     /// <summary>

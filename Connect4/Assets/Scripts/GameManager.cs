@@ -48,7 +48,8 @@ public class GameManager : MonoBehaviour
     /// Start a new game on the server
     /// </summary>
     public void NewGame(){
-        FindObjectOfType<NetworkGate>().NewGameServerRpc();
+        aiStarts = !aiStarts;
+        FindObjectOfType<NetworkGate>().NewGameServerRpc(aiStarts);
     }
 
     /// <summary>
