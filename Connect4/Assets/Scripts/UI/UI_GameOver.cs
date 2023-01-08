@@ -52,6 +52,7 @@ namespace C4UI
             AudioManager.instance.Play("Click");
             FindObjectOfType<NetworkGate>().EndSesionServerRpc();
             FindObjectOfType<GameManager>().ResetGame();
+            ShowAllButtons();
             uiManager.gameUIEventSystem.SetActive(true);
             uiManager.gameUI.SetActive(false);
             NetworkManager.Singleton.Shutdown();
@@ -65,6 +66,7 @@ namespace C4UI
         /// <param name="gameResult">Game result to show</param>
         public void ShowGameResult(GameResult gameResult)
         {
+            HideButtonsIfServer();
             switch (gameResult)
             {
                 case GameResult.DRAW:
@@ -83,6 +85,27 @@ namespace C4UI
                     uiManager.gameOverPage.rootVisualElement.Q<Label>("Defeat").style.display = DisplayStyle.Flex;
                     break;
             }
+        }
+
+        /// <summary>
+        /// Hides new game and go home buttons if its the server
+        /// </summary>
+        private void HideButtonsIfServer()
+        {
+            if (NetworkManager.Singleton.IsServer && !NetworkManager.Singleton.IsHost)
+            {
+                uiManager.gameOverPage.rootVisualElement.Q<Button>("PlayAgainBtn").style.display = DisplayStyle.None;
+                uiManager.gameOverPage.rootVisualElement.Q<Button>("HomeBtn").style.display = DisplayStyle.None;
+            }
+        }
+
+        /// <summary>
+        /// Shows new game and go home buttons in case they where hidden by HideButtonsIfServer
+        /// </summary>
+        private void ShowAllButtons()
+        {
+            uiManager.gameOverPage.rootVisualElement.Q<Button>("PlayAgainBtn").style.display = DisplayStyle.Flex;
+            uiManager.gameOverPage.rootVisualElement.Q<Button>("HomeBtn").style.display = DisplayStyle.Flex;
         }
     }
 }
