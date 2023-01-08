@@ -56,8 +56,18 @@ namespace C4UI
             uiManager.gameUIEventSystem.SetActive(true);
             uiManager.gameUI.SetActive(false);
             NetworkManager.Singleton.Shutdown();
-            uiManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.None;
-            uiManager.homePage.rootVisualElement.style.display = DisplayStyle.Flex;
+
+            // Host and Severer is only available on windows so we can automatically load client page
+            if (Application.platform != RuntimePlatform.WindowsPlayer && Application.platform != RuntimePlatform.WindowsEditor)
+            {
+                uiManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.None;
+                uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.Flex;
+            }
+            else
+            {
+                uiManager.gameOverPage.rootVisualElement.style.display = DisplayStyle.None;
+                uiManager.homePage.rootVisualElement.style.display = DisplayStyle.Flex;
+            }
         }
 
         /// <summary>
