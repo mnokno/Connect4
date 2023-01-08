@@ -111,6 +111,7 @@ public class NetworkGate : NetworkBehaviour
         if (!IsHost)
         {
             gameManager.ResetGame();
+            gameManager.SetAIStarts(aiStart);
         }
         FindObjectOfType<C4UI.UIManager>().gameOverPage.rootVisualElement.style.display = UnityEngine.UIElements.DisplayStyle.None;
         marlinClient.NewGame(TTMemoryPool:5000);

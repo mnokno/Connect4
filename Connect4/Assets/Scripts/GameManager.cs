@@ -187,4 +187,13 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// Setter for aiStarts
+    /// </summary>
+    /// <param name="aiStarts">New value for aiStarts</param>
+    public void SetAIStarts(bool aiStarts)
+    {
+        this.aiStarts = aiStarts;
+    }
 }
