@@ -13,6 +13,10 @@ namespace C4UI
         /// Reference to UIManager 
         /// </summary>
         private UIManager uiManager;
+        /// <summary>
+        /// Set to true if started form host, false if from client
+        /// </summary>
+        private bool fromHost = false;
 
         /// <summary>
         /// Start is called before the first frame update
@@ -52,7 +56,15 @@ namespace C4UI
         {
             AudioManager.instance.Play("Click");
             uiManager.difficultySelectionPage.rootVisualElement.style.display = DisplayStyle.None;
-            uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.Flex;
+            if (fromHost)
+            {
+                uiManager.gameUI.SetActive(true);
+                NetworkManager.Singleton.StartHost();
+            }
+            else
+            {
+                uiManager.clientConnectPage.rootVisualElement.style.display = DisplayStyle.Flex;
+            }
         }
 
         /// <summary>
@@ -82,6 +94,24 @@ namespace C4UI
         private void OnValueChanged(ChangeEvent<int> value)
         {
             GetComponent<UIDocument>().rootVisualElement.Q<Label>("DiffLbl").text = "AI Level: " + value.newValue;
+        }
+
+        /// <summary>
+        /// Shows option which are only available for client and hides host options
+        /// </summary>
+        public void FromClient()
+        {
+            fromHost = false;
+            uiManager.difficultySelectionPage.rootVisualElement.Q<Button>("NextBtn").text = "Next";
+        }
+
+        /// <summary>
+        /// Shows option which are only available for client and hides host options
+        /// </summary>
+        public void FromHost()
+        {
+            fromHost = true;
+            uiManager.difficultySelectionPage.rootVisualElement.Q<Button>("NextBtn").text = "Play";
         }
     }
 }

@@ -39,6 +39,7 @@ namespace C4UI
         {
             AudioManager.instance.Play("Click");
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
+            uiManager.difficultySelectionPage.gameObject.GetComponent<UI_DifficultySelection>().FromClient();
             uiManager.difficultySelectionPage.rootVisualElement.style.display = DisplayStyle.Flex;
         }
 
@@ -49,8 +50,8 @@ namespace C4UI
         {
             AudioManager.instance.Play("Click");
             uiManager.homePage.rootVisualElement.style.display = DisplayStyle.None;
-            uiManager.gameUI.SetActive(true);
-            NetworkManager.Singleton.StartHost();
+            uiManager.difficultySelectionPage.gameObject.GetComponent<UI_DifficultySelection>().FromHost();
+            uiManager.difficultySelectionPage.rootVisualElement.style.display = DisplayStyle.Flex;
         }
 
         /// <summary>
