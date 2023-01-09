@@ -23,10 +23,13 @@ namespace C4UI
 
             Button playAgainBtn = root.Q<Button>("PlayAgainBtn");
             Button homeBtn = root.Q<Button>("HomeBtn");
+            SliderInt slider = root.Q<SliderInt>("Slider");
 
             uiManager.gameOverPage.rootVisualElement.Q<Label>("Draw").style.display = DisplayStyle.None;
             uiManager.gameOverPage.rootVisualElement.Q<Label>("Victory").style.display = DisplayStyle.None;
             uiManager.gameOverPage.rootVisualElement.Q<Label>("Defeat").style.display = DisplayStyle.None;
+            
+            slider.RegisterValueChangedCallback(OnValueChanged);
 
             playAgainBtn.clicked += () => PlayAgainBtnClicked();
             homeBtn.clicked += () => HomeBtnClicked();
@@ -76,7 +79,10 @@ namespace C4UI
         /// <param name="gameResult">Game result to show</param>
         public void ShowGameResult(GameResult gameResult)
         {
-            HideButtonsIfServer();
+            // Updates difficulty displays
+            GetComponent<UIDocument>().rootVisualElement.Q<Label>("OppDiffLbl").text = "Against AI Level: " + FindObjectOfType<InputManager>().diffcultyLevel;
+            GetComponent<UIDocument>().rootVisualElement.Q<SliderInt>("Slider").value = FindObjectOfType<InputManager>().diffcultyLevel;
+
             switch (gameResult)
             {
                 case GameResult.DRAW:
@@ -116,6 +122,17 @@ namespace C4UI
         {
             uiManager.gameOverPage.rootVisualElement.Q<Button>("PlayAgainBtn").style.display = DisplayStyle.Flex;
             uiManager.gameOverPage.rootVisualElement.Q<Button>("HomeBtn").style.display = DisplayStyle.Flex;
+        }
+
+        /// <summary>
+        /// Called when slider value is changed
+        /// </summary>
+        /// <param name="value">New slider value</param>
+        private void OnValueChanged(ChangeEvent<int> value)
+        {
+            AudioManager.instance.Play("Slide");
+            FindObjectOfType<InputManager>().diffcultyLevel = value.newValue;
+            GetComponent<UIDocument>().rootVisualElement.Q<Label>("DiffLbl").text = "AI Level: " + value.newValue;
         }
     }
 }
