@@ -96,8 +96,8 @@ namespace C4UI
         private void HideIP()
         {
             VisualElement root = GetComponent<UIDocument>().rootVisualElement;
-            root.Q<Label>("IPv4Lbl").text = "*************";
-            root.Q<Label>("IPv6Lbl").text = "*************************";
+            root.Q<Label>("IPv4Lbl").text = "*********************";
+            root.Q<Label>("IPv6Lbl").text = "************************************************";
         }
 
         /// <summary>

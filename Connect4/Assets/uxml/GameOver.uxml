@@ -2,9 +2,12 @@
     <Style src="project://database/Assets/uss/Basic.uss?fileID=7433441132597879392&amp;guid=40978cc33237e7441aef93550849005a&amp;type=3#Basic" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center;">
         <ui:VisualElement name="Container" class="gbstrip">
-            <ui:Label text="DRAW" display-tooltip-when-elided="true" name="Draw" class="gameResultLabel" style="background-color: rgb(154, 139, 139);" />
-            <ui:Label text="VICTORY" display-tooltip-when-elided="true" name="Victory" class="gameResultLabel" style="background-color: rgb(75, 197, 51);" />
-            <ui:Label text="DEFEAT" name="Defeat" class="gameResultLabel" style="background-color: rgb(197, 62, 30);" />
+            <ui:Label text="DRAW" display-tooltip-when-elided="true" name="Draw" class="gameResultLabel" style="background-color: rgb(154, 139, 139); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+            <ui:Label text="VICTORY" display-tooltip-when-elided="true" name="Victory" class="gameResultLabel" style="background-color: rgb(75, 197, 51); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+            <ui:Label text="DEFEAT" name="Defeat" class="gameResultLabel" style="background-color: rgb(197, 62, 30); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+            <ui:Label text="Against AI Level:30" display-tooltip-when-elided="true" name="OppDiffLbl" style="width: 80%; -unity-text-align: upper-center; font-size: 10px; align-items: center; margin-bottom: 20px; margin-top: 0; margin-right: 0; margin-left: 0;" />
+            <ui:Label text="AI Level: 30" display-tooltip-when-elided="true" name="DiffLbl" class="label" style="width: 80%; -unity-text-align: upper-center;" />
+            <ui:SliderInt picking-mode="Ignore" high-value="30" low-value="1" name="Slider" value="30" style="width: 80%;" />
             <ui:Button text="New Game" display-tooltip-when-elided="true" name="PlayAgainBtn" class="button" />
             <ui:Button text="Home" display-tooltip-when-elided="true" name="HomeBtn" class="button" />
         </ui:VisualElement>

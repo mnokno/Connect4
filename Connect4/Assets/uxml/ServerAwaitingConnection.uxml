@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/uss/Basic.uss?fileID=7433441132597879392&amp;guid=40978cc33237e7441aef93550849005a&amp;type=3#Basic" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center;">
-        <ui:VisualElement name="Container" class="gbstrip">
+        <ui:VisualElement name="Container" class="gbstrip" style="width: 30%;">
             <ui:Button text="Show IP" display-tooltip-when-elided="true" name="ToggleIPBtn" class="button" style="width: 50%;" />
-            <ui:Label text="*************" display-tooltip-when-elided="true" name="IPv4Lbl" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 70%;" />
-            <ui:Label text="*************************" display-tooltip-when-elided="true" name="IPv6Lbl" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 120%;" />
+            <ui:Label text="*********************" display-tooltip-when-elided="true" name="IPv4Lbl" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 100%; font-size: 30px;" />
+            <ui:Label text="************************************************" display-tooltip-when-elided="true" name="IPv6Lbl" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 140%; font-size: 20px;" />
             <ui:Button text="Back" display-tooltip-when-elided="true" name="BackBtn" class="button" style="width: auto;" />
         </ui:VisualElement>
     </ui:VisualElement>
