@@ -71,25 +71,19 @@ namespace C4UI
         private void ShowIP()
         {
             VisualElement root = GetComponent<UIDocument>().rootVisualElement;
-            string ipV4;
-            string ipV6;
-            try
+            string ipV4 = "IPv4 not detected.";
+            string ipV6 = "IPv6 not detected.";
+
+            foreach (IPAddress iPAddress in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
-                ipV4 = Dns.GetHostEntry(Dns.GetHostName()).AddressList[1].ToString();
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e);
-                ipV4 = "IPv4 Error";
-            }
-            try
-            {
-                ipV6 = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0].ToString();
-            }
-            catch (Exception e)
-            {
-                Debug.Log(e);
-                ipV6 = "IPv6 Error";
+                if (iPAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    ipV4 = iPAddress.ToString();
+                }
+                else if (iPAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)
+                {
+                    ipV6 = iPAddress.ToString();
+                }
             }
 
             root.Q<Label>("IPv4Lbl").text = ipV4;
