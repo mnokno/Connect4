@@ -20,7 +20,7 @@ public class InputManager : MonoBehaviour
     /// <summary>
     /// Difficulty level used when requesting moves
     /// </summary>
-    public int diffcultyLevel = 50;
+    public int diffcultyLevel = 30;
 
     /// <summary>
     /// Start is called before the first frame update
