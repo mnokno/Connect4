@@ -16,6 +16,7 @@
     -unity-background-image-tint-color: rgb(255, 255, 255);
     -unity-font-style: bold;
     transition-duration: 0.3s;
+    width: 70%;
 }
 
 .button:hover {
