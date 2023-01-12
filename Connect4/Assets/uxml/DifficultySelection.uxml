@@ -2,8 +2,8 @@
     <Style src="project://database/Assets/uss/Basic.uss?fileID=7433441132597879392&amp;guid=40978cc33237e7441aef93550849005a&amp;type=3#Basic" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center;">
         <ui:VisualElement name="Container" class="gbstrip">
-            <ui:SliderInt picking-mode="Ignore" high-value="30" low-value="1" name="Slider" value="30" style="width: 80%;" />
-            <ui:Label text="AI Level: 30" display-tooltip-when-elided="true" name="DiffLbl" class="label" style="width: 80%; -unity-text-align: upper-center;" />
+            <ui:SliderInt picking-mode="Ignore" high-value="30" low-value="1" name="Slider" value="30" style="width: 70%;" />
+            <ui:Label text="AI Level: 30" display-tooltip-when-elided="true" name="DiffLbl" class="label" style="width: 70%; -unity-text-align: upper-center;" />
             <ui:Button text="Next" display-tooltip-when-elided="true" name="NextBtn" class="button" />
             <ui:Button text="Back" display-tooltip-when-elided="true" name="BackBtn" class="button" />
             <ui:Button text="Quit" display-tooltip-when-elided="true" name="QuitBtn" class="button" />

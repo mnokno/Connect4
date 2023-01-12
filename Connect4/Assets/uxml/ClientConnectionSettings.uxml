@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/uss/Basic.uss?fileID=7433441132597879392&amp;guid=40978cc33237e7441aef93550849005a&amp;type=3#Basic" />
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center;">
         <ui:VisualElement name="Container" class="gbstrip">
-            <ui:TextField picking-mode="Ignore" value="127.0.0.1" text="127.0.0.1" is-delayed="true" name="Input" style="font-size: 30px; -unity-font-style: bold; min-width: initial; width: 100%; -unity-text-align: upper-left;" />
+            <ui:TextField picking-mode="Ignore" value="127.0.0.1" text="127.0.0.1" is-delayed="true" name="Input" style="font-size: 30px; -unity-font-style: bold; min-width: initial; width: 70%; -unity-text-align: upper-left;" />
             <ui:Button text="Connect" display-tooltip-when-elided="true" name="ConnectBtn" class="button" />
             <ui:Button text="Back" display-tooltip-when-elided="true" name="BackBtn" class="button" />
         </ui:VisualElement>

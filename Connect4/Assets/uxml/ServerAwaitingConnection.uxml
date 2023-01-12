@@ -3,8 +3,8 @@
     <ui:VisualElement name="VisualElement" style="flex-grow: 1; align-items: center;">
         <ui:VisualElement name="Container" class="gbstrip" style="width: 30%;">
             <ui:Button text="Show IP" display-tooltip-when-elided="true" name="ToggleIPBtn" class="button" />
-            <ui:Label text="*********************" display-tooltip-when-elided="true" name="IPv4Lbl" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 100%; font-size: 30px;" />
-            <ui:Label text="************************************************" display-tooltip-when-elided="true" name="IPv6Lbl" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 140%; font-size: 20px;" />
+            <ui:Label text="***************" display-tooltip-when-elided="true" name="IPv4Lbl" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 70%; font-size: 30px;" />
+            <ui:Label text="************************************************" display-tooltip-when-elided="true" name="IPv6Lbl" class="label" style="padding-left: 10px; padding-right: 10px; -unity-text-align: upper-center; -unity-font-style: bold; width: 140%; font-size: 20px; display: none;" />
             <ui:Button text="Back" display-tooltip-when-elided="true" name="BackBtn" class="button" />
         </ui:VisualElement>
     </ui:VisualElement>
