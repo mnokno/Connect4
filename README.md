@@ -1,2 +1,2 @@
 # Connect4
-Unity project aiming to make my connect4 ai (Marlin) accessible on machine with low processing power (mobile phone, tablets, smart tv, etc) through hosting the ai on high performance server. This project contains UI for accessing the server and UI for starting/hosting the server.
+The Connect4 Unity project aims to make the game's AI, Marlin, accessible to devices with low processing power, such as mobile phones, tablets, and smart TVs. To achieve this goal, the project utilizes a high-performance server to host the AI. The project includes both a user interface for accessing the server and a user interface for starting and hosting the server.
